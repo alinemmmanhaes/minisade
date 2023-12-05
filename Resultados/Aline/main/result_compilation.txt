@@ -1,10 +1,11 @@
-tBiopsia.c:19:11: error: conflicting types for ‘CriaBiopsia’; have ‘tBiopsia *(char *, char *, char *, char *, char *, int,  char *, char *, char *)’
-   19 | tBiopsia* CriaBiopsia(char* nomePaciente, char* cpfPaciente, char* rotulo, char* diagnostico, char* regiao, int tamanho, char* nomeMedico, char* CRM, char* data){
-      |           ^~~~~~~~~~~
 In file included from tBiopsia.c:1:
-tBiopsia.h:6:11: note: previous declaration of ‘CriaBiopsia’ with type ‘tBiopsia *(char *, char *, char *, char *, int,  char *, char *, char *)’
-    6 | tBiopsia* CriaBiopsia(char* nomePaciente, char* cpfPaciente, char* rotulo, char* diagnostico, int tamanho, char* nomeMedico, char* CRM, char* data);
-      |           ^~~~~~~~~~~
+tBiopsia.h:6:62: error: unknown type name ‘tLesao’
+    6 | tBiopsia* CriaBiopsia(char* nomePaciente, char* cpfPaciente, tLesao** lesoes, int qtdLesoes, char* nomeMedico, char* CRM, char* data);
+      |                                                              ^~~~~~
+In file included from tConsulta.c:1:
+tConsulta.h:6:25: error: unknown type name ‘tMedico’
+    6 | tConsulta* CriaConsulta(tMedico* medico, char* cpfPaciente, char* nomePaciente);
+      |                         ^~~~~~~
 tEncaminhamento.c: In function ‘CriaEncaminhamento’:
 tEncaminhamento.c:18:5: warning: implicit declaration of function ‘strcpy’ [-Wimplicit-function-declaration]
    18 |     strcpy(enc->nomePaciente, nomePaciente);
@@ -17,6 +18,10 @@ tEncaminhamento.c:18:5: warning: incompatible implicit declaration of built-in f
    18 |     strcpy(enc->nomePaciente, nomePaciente);
       |     ^~~~~~
 tEncaminhamento.c:18:5: note: include ‘<string.h>’ or provide a declaration of ‘strcpy’
+In file included from tListaBusca.c:1:
+tListaBusca.h:8:53: error: unknown type name ‘tPaciente’
+    8 | void AdicionaPacienteListaBusca(tListaBusca* lista, tPaciente* paciente);
+      |                                                     ^~~~~~~~~
 tPaciente.c: In function ‘CriaPaciente’:
 tPaciente.c:16:5: warning: implicit declaration of function ‘strcpy’ [-Wimplicit-function-declaration]
    16 |     strcpy(pac->nome, nome);

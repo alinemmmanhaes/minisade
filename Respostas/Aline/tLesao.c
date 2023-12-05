@@ -5,7 +5,7 @@
 
 struct tLesao
 {
-    char rotulo[5];
+    char rotulo[6];
     char diagnostico[30];
     char regiao[20];
     int tam;

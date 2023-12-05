@@ -9,4 +9,9 @@ void desalocaConsulta(tConsulta* consulta);
 
 void LeConsulta(tConsulta* cons);
 
+void ConsultaCadastraLesao(tConsulta* cons);
+void ConsultaGerarReceita(tConsulta* cons);
+void ConsultaEncaminhamento(tConsulta* cons);
+void ConsultaBiopsia(tConsulta* cons);
+
 #endif

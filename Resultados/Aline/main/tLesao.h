@@ -3,8 +3,14 @@
 
 typedef struct tLesao tLesao;
 
-tLesao* CriaLesao();
+tLesao* CriaLesao(char* rotulo, char* diagnostico, char* regiao, int tam, int cirurgia, int crioterapia);
 
-void desalocaLesao(void *dado);
+void desalocaLesao(tLesao* dado);
+
+char* ObtemRotuloLesao(tLesao* lesao);
+char* ObtemDiagnosticoLesao(tLesao* lesao);
+char* ObtemRegiaoLesao(tLesao* lesao);
+int ObtemTamanhoLesao(tLesao* lesao);
+int ObtemCirurgiaLesao(tLesao* lesao);
 
 #endif

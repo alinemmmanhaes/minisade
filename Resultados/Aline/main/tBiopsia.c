@@ -1,4 +1,5 @@
 #include "tBiopsia.h"
+#include "tLesao.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -7,26 +8,22 @@ struct tBiopsia
 {
     char nomePaciente[100];
     char cpfPaciente[15];
-    char rotulo[5];
-    char diagnostico[100];
-    char regiao[15];
-    int tamanho;
+    tLesao** lesoes;
+    int qtdLesoes;
     char nomeMedico[100];
     char CRM[12];
     char dataStr[11];
 };
 
-tBiopsia* CriaBiopsia(char* nomePaciente, char* cpfPaciente, char* rotulo, char* diagnostico, char* regiao, int tamanho, char* nomeMedico, char* CRM, char* data){
+tBiopsia* CriaBiopsia(char* nomePaciente, char* cpfPaciente, tLesao** lesoes, int qtdLesoes, char* nomeMedico, char* CRM, char* data){
     tBiopsia* biop = malloc(sizeof(tBiopsia));
     strcpy(biop->nomePaciente, nomePaciente);
     strcpy(biop->cpfPaciente, cpfPaciente);
-    strcpy(biop->rotulo, rotulo);
-    strcpy(biop->diagnostico, diagnostico);
-    strcpy(biop->regiao, regiao);
     strcpy(biop->nomeMedico, nomeMedico);
     strcpy(biop->CRM, CRM);
     strcpy(biop->dataStr, data);
-    biop->tamanho = tamanho;
+    biop->qtdLesoes = qtdLesoes;
+    biop->lesoes = lesoes;
 
     //CHECAR SE AO MENOS UMA DAS LESOES FOI ENVIADA PARA CIRURGIA ANTES DE CRIAR O DOCUMENTO
 
@@ -44,9 +41,17 @@ void imprimeNaTelaBiopsia(void *dado){
     tBiopsia* biop = (tBiopsia*) dado;
     printf("PACIENTE: %s\n", biop->nomePaciente);
     printf("CPF: %s\n\n", biop->cpfPaciente);
+
     printf("SOLICITACAO DE BIOPSIA PARA AS LESOES:\n");
-    printf("%s - %s - %s - %d\n", biop->rotulo, biop->diagnostico, biop->regiao, biop->tamanho);
+    for(int i=0; i<biop->qtdLesoes; i++){
+        char* rotulo = ObtemRotuloLesao(biop->lesoes[i]);
+        char* diagnostico = ObtemDiagnosticoLesao(biop->lesoes[i]);
+        char* regiao = ObtemRegiaoLesao(biop->lesoes[i]);
+        int tam = ObtemTamanhoLesao(biop->lesoes[i]);
+        printf("%s - %s - %s - %dMM\n", rotulo, diagnostico, regiao, tam);
+    }
     printf("\n");
+    
     printf("%s (%s)\n", biop->nomeMedico, biop->CRM);
     printf("%s\n", biop->dataStr);
 }
@@ -61,9 +66,17 @@ void imprimeEmArquivoBiopsia(void *dado, char *path){
 
     fprintf(pBiopsia, "PACIENTE: %s\n", biop->nomePaciente);
     fprintf(pBiopsia, "CPF: %s\n\n", biop->cpfPaciente);
+
     fprintf(pBiopsia, "SOLICITACAO DE BIOPSIA PARA AS LESOES:\n");
-    fprintf(pBiopsia, "%s - %s - %s - %d\n", biop->rotulo, biop->diagnostico, biop->regiao, biop->tamanho);
+    for(int i=0; i<biop->qtdLesoes; i++){
+        char* rotulo = ObtemRotuloLesao(biop->lesoes[i]);
+        char* diagnostico = ObtemDiagnosticoLesao(biop->lesoes[i]);
+        char* regiao = ObtemRegiaoLesao(biop->lesoes[i]);
+        int tam = ObtemTamanhoLesao(biop->lesoes[i]);
+        fprintf(pBiopsia, "%s - %s - %s - %dMM\n", rotulo, diagnostico, regiao, tam);
+    }
     fprintf(pBiopsia, "\n");
+
     fprintf(pBiopsia, "%s (%s)\n", biop->nomeMedico, biop->CRM);
     fprintf(pBiopsia ,"%s\n", biop->dataStr);
 
