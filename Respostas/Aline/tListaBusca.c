@@ -1,5 +1,4 @@
 #include "tListaBusca.h"
-#include "tPaciente.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

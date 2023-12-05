@@ -1,10 +1,4 @@
 #include "tConsulta.h"
-#include "tLesao.h"
-#include "tMedico.h"
-#include "tReceita.h"
-#include "tBiopsia.h"
-#include "tEncaminhamento.h"
-#include "tDocumento.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -86,23 +80,31 @@ void ConsultaCadastraLesao(tConsulta* cons){
     printf("############################################################\n");
 }
 
-void ConsultaGerarReceita(tConsulta* cons, tDocumento** docs, int qtddocs){
+void ConsultaGerarReceita(tConsulta* cons, tFila* fila){
     char uso[7], medicamento[50], tipomed[50], intrucoes[300];
     int qtd;
+    eTipoUso tpuso;
 
     printf("TIPO DE USO: ");
-    printf("%[^\n]%*c", uso);
+    scanf("%[^\n]%*c", uso);
     printf("NOME DO MEDICAMENTO: ");
-    printf("%[^\n]%*c", medicamento);
+    scanf("%[^\n]%*c", medicamento);
     printf("TIPO DE MEDICAMENTO: ");
-    printf("%[^\n]%*c", tipomed);
+    scanf("%[^\n]%*c", tipomed);
     printf("QUANTIDADE: ");
-    printf("%d%*c", &qtd);
+    scanf("%d%*c", &qtd);
     printf("INSTRUCOES DE USO: ");
-    printf("%[^\n]%*c", intrucoes);
+    scanf("%[^\n]%*c", intrucoes);
+    if(uso == "ORAL"){
+        tpuso = 0;
+    }
+    else if(uso == "TOPICO"){
+        tpuso = 1;
+    }
 
-    tReceita* receita = criaReceita(cons->nomePaciente, uso, medicamento, tipomed, intrucoes, qtd, ObtemNomeMedico(cons->medico), ObtemCRMMedico(cons->medico), cons->data);
-    
+    tReceita* receita = criaReceita(cons->nomePaciente, tpuso, medicamento, tipomed, intrucoes, qtd, ObtemNomeMedico(cons->medico), ObtemCRMMedico(cons->medico), cons->data);
+    tDocumento* doc = criaDocumento(receita, imprimeNaTelaReceita, imprimeEmArquivoReceita, desalocaReceita);
+    insereDocumentoFila(fila, doc, imprimeNaTelaDocumento, imprimeEmArquivoDocumento, desalocaDocumento);
 }
 
 void ConsultaEncaminhamento(tConsulta* cons);
