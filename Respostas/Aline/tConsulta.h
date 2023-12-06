@@ -19,7 +19,7 @@ void LeConsulta(tConsulta* cons);
 
 void ConsultaCadastraLesao(tConsulta* cons);
 void ConsultaGerarReceita(tConsulta* cons, tFila* fila);
-void ConsultaEncaminhamento(tConsulta* cons);
-void ConsultaBiopsia(tConsulta* cons);
+void ConsultaEncaminhamento(tConsulta* cons, tFila* fila);
+void ConsultaBiopsia(tConsulta* cons, tFila* fila);
 
 #endif

@@ -47,7 +47,7 @@ void LeConsulta(tConsulta* cons){
     scanf("%d%*c", &cons->alergia);
     printf("HISTORICO DE CANCER: ");
     scanf("%d%*c", &cons->cancer);
-    printf("TIPO DE PELE: ");
+    printf("TIPO DE PELE: \n");
     scanf("%s", cons->pele);
 }
 
@@ -66,7 +66,7 @@ void ConsultaCadastraLesao(tConsulta* cons){
     scanf("%d%*c", &tamanho);
     printf("ENVIAR PARA CIRURGIA: ");
     scanf("%d%*c", &cirurgia);
-    printf("ENVIAR PARA CRIOTERAPIA: ");
+    printf("ENVIAR PARA CRIOTERAPIA: \n");
     scanf("%d%*c", &crioterapia);
 
     sprintf(rotulo, "L%d", cons->qtdLesoes);
@@ -85,6 +85,8 @@ void ConsultaGerarReceita(tConsulta* cons, tFila* fila){
     int qtd;
     eTipoUso tpuso;
 
+    printf("#################### CONSULTA MEDICA #######################\n");
+    printf("RECEITA MEDICA:\n");
     printf("TIPO DE USO: ");
     scanf("%[^\n]%*c", uso);
     printf("NOME DO MEDICAMENTO: ");
@@ -93,7 +95,7 @@ void ConsultaGerarReceita(tConsulta* cons, tFila* fila){
     scanf("%[^\n]%*c", tipomed);
     printf("QUANTIDADE: ");
     scanf("%d%*c", &qtd);
-    printf("INSTRUCOES DE USO: ");
+    printf("INSTRUCOES DE USO: \n");
     scanf("%[^\n]%*c", intrucoes);
     if(uso == "ORAL"){
         tpuso = 0;
@@ -105,8 +107,49 @@ void ConsultaGerarReceita(tConsulta* cons, tFila* fila){
     tReceita* receita = criaReceita(cons->nomePaciente, tpuso, medicamento, tipomed, intrucoes, qtd, ObtemNomeMedico(cons->medico), ObtemCRMMedico(cons->medico), cons->data);
     tDocumento* doc = criaDocumento(receita, imprimeNaTelaReceita, imprimeEmArquivoReceita, desalocaReceita);
     insereDocumentoFila(fila, doc, imprimeNaTelaDocumento, imprimeEmArquivoDocumento, desalocaDocumento);
+
+    printf("RECEITA ENVIADA PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR\n");
+    char c;
+    scanf("%c%*c", &c);
+    printf("############################################################\n");
 }
 
-void ConsultaEncaminhamento(tConsulta* cons);
+void ConsultaEncaminhamento(tConsulta* cons, tFila* fila){
+    printf("#################### CONSULTA MEDICA #######################\n");
 
-void ConsultaBiopsia(tConsulta* cons);
+    char esp[50], mot[300];
+    printf("ENCAMINHAMENTO:\n");
+    printf("ESPECIALIDADE ENCAMINHADA: ");
+    scanf("%[^\n]%*c", esp);
+    printf("MOTIVO: \n");
+    scanf("%[^\n]%*c", mot);
+    tEncaminhamento* enc = CriaEncaminhamento(cons->nomePaciente, cons->cpfPaciente, esp, mot, ObtemNomeMedico(cons->medico), ObtemCRMMedico(cons->medico), cons->data);
+    tDocumento* doc = criaDocumento(enc, imprimeNaTelaReceita, imprimeEmArquivoReceita, desalocaReceita);
+    insereDocumentoFila(fila, doc, imprimeNaTelaDocumento, imprimeEmArquivoDocumento, desalocaDocumento);
+
+    printf("ENCAMINHAMENTO ENVIADO PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR\n");
+    char c;
+    scanf("%c%*c", &c);
+    printf("############################################################\n");
+}
+
+void ConsultaBiopsia(tConsulta* cons, tFila* fila){
+    int flag = 0;
+    printf("#################### CONSULTA MEDICA #######################\n");
+
+    for(int i=0; i<cons->qtdLesoes; i++){
+        if(ObtemCirurgiaLesao(cons->lesoes[i])){
+            flag = 1;
+        }
+    }
+
+    if(flag){
+        tBiopsia* bio = CriaBiopsia(cons->nomePaciente, cons->cpfPaciente, cons->lesoes, cons->qtdLesoes, ObtemNomeMedico(cons->medico), ObtemCRMMedico(cons->medico), cons->data);
+        tDocumento* doc = criaDocumento(bio, imprimeNaTelaReceita, imprimeEmArquivoReceita, desalocaReceita);
+        insereDocumentoFila(fila, doc, imprimeNaTelaDocumento, imprimeEmArquivoDocumento, desalocaDocumento);
+        printf("SOLICITACAO DE BIOPSIA ENVIADA PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR\n");
+    }
+    char c;
+    scanf("%c%*c", &c);
+    printf("############################################################\n");
+}
