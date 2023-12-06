@@ -7,11 +7,11 @@ struct tRelatorio
 {
     int total; //pacientes
     int pacAtendidos;
-    float mediaIdade;
+    int mediaIdade;
     int fem;
     int masc;
     int outros;
-    float tamLesoes;
+    int tamLesoes;
     int nLesoes;
     int cirurgia;
     int crioterapia;
@@ -78,8 +78,7 @@ void imprimeEmArquivoRelatorio(void *dado, char *path){
 void CalculaRelatorio(tRelatorio* rel, tPaciente** pacs, int nPacs, tConsulta** cons, int nCons){
     rel->total = nPacs;
     for(int i=0; i<nPacs; i++){
-        char sexo[10];
-        sexo = ObtemSexoPaciente(pacs[i]);
+        char* sexo = ObtemSexoPaciente(pacs[i]);
         if(sexo == "FEMININO"){
             (rel->fem)++;
         }

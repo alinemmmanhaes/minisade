@@ -2,8 +2,8 @@
 #define _TSECRETARIO_H_
 
 typedef enum {
-    ADMIN = 0,
-    USER = 1
+    ADMIN = 1,
+    USER = 2
 } TypeSec;
 typedef struct tSecretario tSecretario;
 

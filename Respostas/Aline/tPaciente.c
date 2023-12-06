@@ -14,7 +14,7 @@ struct tPaciente
     int nConsultas;
 };
 
-int CalculaIdadde(int dia, int mes, int ano){
+int CalculaIdade(int dia, int mes, int ano){
     if(mes< 11){
         return 2023-ano;
     }
@@ -44,16 +44,20 @@ void DesalocaPaciente(tPaciente* pac){
     }
 }
 
-const char* ObtemNomePaciente(tPaciente* pac){
-    return &(pac->nome);
+char* ObtemNomePaciente(tPaciente* pac){
+    return (pac->nome);
 }
 
-const char* ObtemCPFPaciente(tPaciente* pac){
-    return &(pac->cpf);
+char* ObtemCPFPaciente(tPaciente* pac){
+    return (pac->cpf);
 }
 
-const char* ObtemSexoPaciente(tPaciente* pac){
-    return &(pac->genero);
+char* ObtemSexoPaciente(tPaciente* pac){
+    return (pac->genero);
+}
+
+char* ObtemDataNascPaciente(tPaciente* pac){
+    return (pac->nasc);
 }
 
 int ObtemNumeroAtendimentosPaciente(tPaciente* pac){
@@ -66,6 +70,14 @@ int ObtemIdadePaciente(tPaciente* pac){
 
 int PacComparaCPF(tPaciente* pac, char* cpf){
     int resp = strcmp(pac->cpf, cpf);
+    if(resp == 0){
+        return 1;
+    }
+    return 0;
+}
+
+int PacComparaNome(tPaciente* pac, char* nome){
+    int resp = strcmp(pac->nome, nome);
     if(resp == 0){
         return 1;
     }
