@@ -24,8 +24,10 @@ tDocumento *criaDocumento(void *dado, func_ptr_imprimeNaTela imprimeNaTela,
                           }
 
 void desalocaDocumento(tDocumento *doc){
-    doc->desaloca(doc->dado);
-    free(doc);
+    if(doc != NULL){
+       doc->desaloca(doc->dado);
+        free(doc); 
+    }
 }        
 
 void imprimeNaTelaDocumento(tDocumento *doc){

@@ -5,7 +5,7 @@
 
 struct tLesao
 {
-    char rotulo[5];
+    char rotulo[6];
     char diagnostico[30];
     char regiao[20];
     int tam;
@@ -25,7 +25,9 @@ tLesao* CriaLesao(char* rotulo, char* diagnostico, char* regiao, int tam, int ci
 }
 
 void desalocaLesao(tLesao* dado){
-    free(dado);
+    if(dado != NULL){
+        free(dado);
+    }
 }
 
 char* ObtemRotuloLesao(tLesao* lesao){
@@ -46,4 +48,8 @@ int ObtemTamanhoLesao(tLesao* lesao){
 
 int ObtemCirurgiaLesao(tLesao* lesao){
     return lesao->cirurgia;
+}
+
+int ObtemCrioterapiaLesao(tLesao* lesao){
+    return lesao->crioterapia;
 }

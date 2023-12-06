@@ -35,10 +35,16 @@ void DesalocaMedico(tMedico* med){
 }
 
 char* ObtemNomeMedico(tMedico* med){
+    if(med == NULL){
+        return '\0';
+    }
     return med->nome;
 }
 
 char* ObtemCRMMedico(tMedico* med){
+    if(med == NULL){
+        return '\0';
+    }
     return med->crm;
 }
 

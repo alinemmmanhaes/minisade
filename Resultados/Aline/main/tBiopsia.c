@@ -25,8 +25,6 @@ tBiopsia* CriaBiopsia(char* nomePaciente, char* cpfPaciente, tLesao** lesoes, in
     biop->qtdLesoes = qtdLesoes;
     biop->lesoes = lesoes;
 
-    //CHECAR SE AO MENOS UMA DAS LESOES FOI ENVIADA PARA CIRURGIA ANTES DE CRIAR O DOCUMENTO
-
     return biop;
 }
 
@@ -48,7 +46,9 @@ void imprimeNaTelaBiopsia(void *dado){
         char* diagnostico = ObtemDiagnosticoLesao(biop->lesoes[i]);
         char* regiao = ObtemRegiaoLesao(biop->lesoes[i]);
         int tam = ObtemTamanhoLesao(biop->lesoes[i]);
-        printf("%s - %s - %s - %dMM\n", rotulo, diagnostico, regiao, tam);
+        if(ObtemCirurgiaLesao(biop->lesoes[i])){
+            printf("%s - %s - %s - %dMM\n", rotulo, diagnostico, regiao, tam);
+        }
     }
     printf("\n");
     
@@ -73,7 +73,9 @@ void imprimeEmArquivoBiopsia(void *dado, char *path){
         char* diagnostico = ObtemDiagnosticoLesao(biop->lesoes[i]);
         char* regiao = ObtemRegiaoLesao(biop->lesoes[i]);
         int tam = ObtemTamanhoLesao(biop->lesoes[i]);
-        fprintf(pBiopsia, "%s - %s - %s - %dMM\n", rotulo, diagnostico, regiao, tam);
+        if(ObtemCirurgiaLesao(biop->lesoes[i])){
+            fprintf(pBiopsia, "%s - %s - %s - %dMM\n", rotulo, diagnostico, regiao, tam);
+        }
     }
     fprintf(pBiopsia, "\n");
 

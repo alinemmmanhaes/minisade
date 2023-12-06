@@ -1,6 +1,8 @@
 #ifndef _TLISTABUSCA_H_
 #define _TLISTABUSCA_H_
 
+#include "tPaciente.h"
+
 typedef struct tListaBusca tListaBusca;
 
 tListaBusca* CriaListaBusca();

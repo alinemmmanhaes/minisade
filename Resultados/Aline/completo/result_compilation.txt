@@ -1,44 +1,170 @@
-In file included from tBiopsia.c:1:
-tBiopsia.h:6:62: error: unknown type name ‘tLesao’
-    6 | tBiopsia* CriaBiopsia(char* nomePaciente, char* cpfPaciente, tLesao** lesoes, int qtdLesoes, char* nomeMedico, char* CRM, char* data);
-      |                                                              ^~~~~~
-In file included from tConsulta.c:1:
-tConsulta.h:6:25: error: unknown type name ‘tMedico’
-    6 | tConsulta* CriaConsulta(tMedico* medico, char* cpfPaciente, char* nomePaciente);
-      |                         ^~~~~~~
-tEncaminhamento.c: In function ‘CriaEncaminhamento’:
-tEncaminhamento.c:18:5: warning: implicit declaration of function ‘strcpy’ [-Wimplicit-function-declaration]
-   18 |     strcpy(enc->nomePaciente, nomePaciente);
-      |     ^~~~~~
-tEncaminhamento.c:4:1: note: include ‘<string.h>’ or provide a declaration of ‘strcpy’
-    3 | #include <stdlib.h>
-  +++ |+#include <string.h>
-    4 | 
-tEncaminhamento.c:18:5: warning: incompatible implicit declaration of built-in function ‘strcpy’ [-Wbuiltin-declaration-mismatch]
-   18 |     strcpy(enc->nomePaciente, nomePaciente);
-      |     ^~~~~~
-tEncaminhamento.c:18:5: note: include ‘<string.h>’ or provide a declaration of ‘strcpy’
-In file included from tListaBusca.c:1:
-tListaBusca.h:8:53: error: unknown type name ‘tPaciente’
-    8 | void AdicionaPacienteListaBusca(tListaBusca* lista, tPaciente* paciente);
-      |                                                     ^~~~~~~~~
+tConsulta.c: In function ‘ConsultaGerarReceita’:
+tConsulta.c:104:12: warning: comparison with string literal results in unspecified behavior [-Waddress]
+  104 |     if(uso == "ORAL"){
+      |            ^~
+tConsulta.c:107:17: warning: comparison with string literal results in unspecified behavior [-Waddress]
+  107 |     else if(uso == "TOPICO"){
+      |                 ^~
+tConsulta.c:113:36: warning: passing argument 3 of ‘insereDocumentoFila’ from incompatible pointer type [-Wincompatible-pointer-types]
+  113 |     insereDocumentoFila(fila, doc, imprimeNaTelaDocumento, imprimeEmArquivoDocumento, desalocaDocumento);
+      |                                    ^~~~~~~~~~~~~~~~~~~~~~
+      |                                    |
+      |                                    void (*)(tDocumento *)
+In file included from tConsulta.h:10,
+                 from tConsulta.c:1:
+tFila.h:28:71: note: expected ‘func_ptr_imprimeNaTela’ {aka ‘void (*)(void *)’} but argument is of type ‘void (*)(tDocumento *)’
+   28 | void insereDocumentoFila(tFila *f, void *dado, func_ptr_imprimeNaTela imprimeNaTela,
+      |                                                ~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~
+tConsulta.c:113:60: warning: passing argument 4 of ‘insereDocumentoFila’ from incompatible pointer type [-Wincompatible-pointer-types]
+  113 |     insereDocumentoFila(fila, doc, imprimeNaTelaDocumento, imprimeEmArquivoDocumento, desalocaDocumento);
+      |                                                            ^~~~~~~~~~~~~~~~~~~~~~~~~
+      |                                                            |
+      |                                                            void (*)(tDocumento *, char *)
+In file included from tConsulta.h:10,
+                 from tConsulta.c:1:
+tFila.h:29:52: note: expected ‘func_ptr_imprimeEmArquivo’ {aka ‘void (*)(void *, char *)’} but argument is of type ‘void (*)(tDocumento *, char *)’
+   29 |                          func_ptr_imprimeEmArquivo ImprimeEmArquivo,
+      |                          ~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~
+tConsulta.c:113:87: warning: passing argument 5 of ‘insereDocumentoFila’ from incompatible pointer type [-Wincompatible-pointer-types]
+  113 |     insereDocumentoFila(fila, doc, imprimeNaTelaDocumento, imprimeEmArquivoDocumento, desalocaDocumento);
+      |                                                                                       ^~~~~~~~~~~~~~~~~
+      |                                                                                       |
+      |                                                                                       void (*)(tDocumento *)
+In file included from tConsulta.h:10,
+                 from tConsulta.c:1:
+tFila.h:30:44: note: expected ‘func_ptr_desaloca’ {aka ‘void (*)(void *)’} but argument is of type ‘void (*)(tDocumento *)’
+   30 |                          func_ptr_desaloca desaloca);
+      |                          ~~~~~~~~~~~~~~~~~~^~~~~~~~
+tConsulta.c: In function ‘ConsultaEncaminhamento’:
+tConsulta.c:132:36: warning: passing argument 3 of ‘insereDocumentoFila’ from incompatible pointer type [-Wincompatible-pointer-types]
+  132 |     insereDocumentoFila(fila, doc, imprimeNaTelaDocumento, imprimeEmArquivoDocumento, desalocaDocumento);
+      |                                    ^~~~~~~~~~~~~~~~~~~~~~
+      |                                    |
+      |                                    void (*)(tDocumento *)
+In file included from tConsulta.h:10,
+                 from tConsulta.c:1:
+tFila.h:28:71: note: expected ‘func_ptr_imprimeNaTela’ {aka ‘void (*)(void *)’} but argument is of type ‘void (*)(tDocumento *)’
+   28 | void insereDocumentoFila(tFila *f, void *dado, func_ptr_imprimeNaTela imprimeNaTela,
+      |                                                ~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~
+tConsulta.c:132:60: warning: passing argument 4 of ‘insereDocumentoFila’ from incompatible pointer type [-Wincompatible-pointer-types]
+  132 |     insereDocumentoFila(fila, doc, imprimeNaTelaDocumento, imprimeEmArquivoDocumento, desalocaDocumento);
+      |                                                            ^~~~~~~~~~~~~~~~~~~~~~~~~
+      |                                                            |
+      |                                                            void (*)(tDocumento *, char *)
+In file included from tConsulta.h:10,
+                 from tConsulta.c:1:
+tFila.h:29:52: note: expected ‘func_ptr_imprimeEmArquivo’ {aka ‘void (*)(void *, char *)’} but argument is of type ‘void (*)(tDocumento *, char *)’
+   29 |                          func_ptr_imprimeEmArquivo ImprimeEmArquivo,
+      |                          ~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~
+tConsulta.c:132:87: warning: passing argument 5 of ‘insereDocumentoFila’ from incompatible pointer type [-Wincompatible-pointer-types]
+  132 |     insereDocumentoFila(fila, doc, imprimeNaTelaDocumento, imprimeEmArquivoDocumento, desalocaDocumento);
+      |                                                                                       ^~~~~~~~~~~~~~~~~
+      |                                                                                       |
+      |                                                                                       void (*)(tDocumento *)
+In file included from tConsulta.h:10,
+                 from tConsulta.c:1:
+tFila.h:30:44: note: expected ‘func_ptr_desaloca’ {aka ‘void (*)(void *)’} but argument is of type ‘void (*)(tDocumento *)’
+   30 |                          func_ptr_desaloca desaloca);
+      |                          ~~~~~~~~~~~~~~~~~~^~~~~~~~
+tConsulta.c: In function ‘ConsultaBiopsia’:
+tConsulta.c:153:40: warning: passing argument 3 of ‘insereDocumentoFila’ from incompatible pointer type [-Wincompatible-pointer-types]
+  153 |         insereDocumentoFila(fila, doc, imprimeNaTelaDocumento, imprimeEmArquivoDocumento, desalocaDocumento);
+      |                                        ^~~~~~~~~~~~~~~~~~~~~~
+      |                                        |
+      |                                        void (*)(tDocumento *)
+In file included from tConsulta.h:10,
+                 from tConsulta.c:1:
+tFila.h:28:71: note: expected ‘func_ptr_imprimeNaTela’ {aka ‘void (*)(void *)’} but argument is of type ‘void (*)(tDocumento *)’
+   28 | void insereDocumentoFila(tFila *f, void *dado, func_ptr_imprimeNaTela imprimeNaTela,
+      |                                                ~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~
+tConsulta.c:153:64: warning: passing argument 4 of ‘insereDocumentoFila’ from incompatible pointer type [-Wincompatible-pointer-types]
+  153 |         insereDocumentoFila(fila, doc, imprimeNaTelaDocumento, imprimeEmArquivoDocumento, desalocaDocumento);
+      |                                                                ^~~~~~~~~~~~~~~~~~~~~~~~~
+      |                                                                |
+      |                                                                void (*)(tDocumento *, char *)
+In file included from tConsulta.h:10,
+                 from tConsulta.c:1:
+tFila.h:29:52: note: expected ‘func_ptr_imprimeEmArquivo’ {aka ‘void (*)(void *, char *)’} but argument is of type ‘void (*)(tDocumento *, char *)’
+   29 |                          func_ptr_imprimeEmArquivo ImprimeEmArquivo,
+      |                          ~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~
+tConsulta.c:153:91: warning: passing argument 5 of ‘insereDocumentoFila’ from incompatible pointer type [-Wincompatible-pointer-types]
+  153 |         insereDocumentoFila(fila, doc, imprimeNaTelaDocumento, imprimeEmArquivoDocumento, desalocaDocumento);
+      |                                                                                           ^~~~~~~~~~~~~~~~~
+      |                                                                                           |
+      |                                                                                           void (*)(tDocumento *)
+In file included from tConsulta.h:10,
+                 from tConsulta.c:1:
+tFila.h:30:44: note: expected ‘func_ptr_desaloca’ {aka ‘void (*)(void *)’} but argument is of type ‘void (*)(tDocumento *)’
+   30 |                          func_ptr_desaloca desaloca);
+      |                          ~~~~~~~~~~~~~~~~~~^~~~~~~~
+tConsulta.c: In function ‘ConsultaObtemCrioterapiaLesaoI’:
+tConsulta.c:180:1: warning: control reaches end of non-void function [-Wreturn-type]
+  180 | }
+      | ^
+tConsulta.c: In function ‘ConsultaGerarReceita’:
+tConsulta.c:111:25: warning: ‘tpuso’ is used uninitialized [-Wuninitialized]
+  111 |     tReceita* receita = criaReceita(cons->nomePaciente, tpuso, medicamento, tipomed, intrucoes, qtd, ObtemNomeMedico(cons->medico), ObtemCRMMedico(cons->medico), cons->data);
+      |                         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 tPaciente.c: In function ‘CriaPaciente’:
-tPaciente.c:16:5: warning: implicit declaration of function ‘strcpy’ [-Wimplicit-function-declaration]
-   16 |     strcpy(pac->nome, nome);
-      |     ^~~~~~
-tPaciente.c:4:1: note: include ‘<string.h>’ or provide a declaration of ‘strcpy’
-    3 | #include <stdlib.h>
-  +++ |+#include <string.h>
-    4 | 
-tPaciente.c:16:5: warning: incompatible implicit declaration of built-in function ‘strcpy’ [-Wbuiltin-declaration-mismatch]
-   16 |     strcpy(pac->nome, nome);
-      |     ^~~~~~
-tPaciente.c:16:5: note: include ‘<string.h>’ or provide a declaration of ‘strcpy’
-tPaciente.c: In function ‘PacComparaCPF’:
-tPaciente.c:39:16: warning: implicit declaration of function ‘strcmp’ [-Wimplicit-function-declaration]
-   39 |     int resp = strcmp(pac->cpf, cpf);
-      |                ^~~~~~
-tPaciente.c:39:16: note: include ‘<string.h>’ or provide a declaration of ‘strcmp’
+tPaciente.c:36:18: warning: implicit declaration of function ‘CalculaIdade’; did you mean ‘CalculaIdadde’? [-Wimplicit-function-declaration]
+   36 |     pac->idade = CalculaIdade(dia, mes, ano);
+      |                  ^~~~~~~~~~~~
+      |                  CalculaIdadde
+tPaciente.c: In function ‘ObtemNomePaciente’:
+tPaciente.c:48:12: warning: returning ‘char (*)[100]’ from a function with incompatible return type ‘const char *’ [-Wincompatible-pointer-types]
+   48 |     return &(pac->nome);
+      |            ^~~~~~~~~~~~
+tPaciente.c: In function ‘ObtemCPFPaciente’:
+tPaciente.c:52:12: warning: returning ‘char (*)[15]’ from a function with incompatible return type ‘const char *’ [-Wincompatible-pointer-types]
+   52 |     return &(pac->cpf);
+      |            ^~~~~~~~~~~
+tPaciente.c: In function ‘ObtemSexoPaciente’:
+tPaciente.c:56:12: warning: returning ‘char (*)[10]’ from a function with incompatible return type ‘const char *’ [-Wincompatible-pointer-types]
+   56 |     return &(pac->genero);
+      |            ^~~~~~~~~~~~~~
+tPaciente.c: In function ‘PacIncrementaConsultas’:
+tPaciente.c:77:1: warning: control reaches end of non-void function [-Wreturn-type]
+   77 | }
+      | ^
+tRelatorio.c: In function ‘imprimeNaTelaRelatorio’:
+tRelatorio.c:46:27: warning: format ‘%d’ expects argument of type ‘int’, but argument 2 has type ‘double’ [-Wformat=]
+   46 |     printf("IDADE MEDIA: %d\n", (rel->mediaIdade)/(rel->total));
+      |                          ~^     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                           |                      |
+      |                           int                    double
+      |                          %f
+tRelatorio.c:51:40: warning: format ‘%d’ expects argument of type ‘int’, but argument 2 has type ‘double’ [-Wformat=]
+   51 |     printf("TAMANHO MEDIO DAS LESOES: %d\n", (rel->tamLesoes)/(rel->nLesoes));
+      |                                       ~^     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                                        |                     |
+      |                                        int                   double
+      |                                       %f
+tRelatorio.c: In function ‘imprimeEmArquivoRelatorio’:
+tRelatorio.c:65:40: warning: format ‘%d’ expects argument of type ‘int’, but argument 3 has type ‘double’ [-Wformat=]
+   65 |     fprintf(pRelatorio, "IDADE MEDIA: %d\n", (rel->mediaIdade)/(rel->total));
+      |                                       ~^     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                                        |                      |
+      |                                        int                    double
+      |                                       %f
+tRelatorio.c:70:53: warning: format ‘%d’ expects argument of type ‘int’, but argument 3 has type ‘double’ [-Wformat=]
+   70 |     fprintf(pRelatorio, "TAMANHO MEDIO DAS LESOES: %d\n", (rel->tamLesoes)/(rel->nLesoes));
+      |                                                    ~^     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                                                     |                     |
+      |                                                     int                   double
+      |                                                    %f
+tRelatorio.c: In function ‘CalculaRelatorio’:
+tRelatorio.c:82:14: error: assignment to expression with array type
+   82 |         sexo = ObtemSexoPaciente(pacs[i]);
+      |              ^
+tRelatorio.c:83:17: warning: comparison with string literal results in unspecified behavior [-Waddress]
+   83 |         if(sexo == "FEMININO"){
+      |                 ^~
+tRelatorio.c:86:22: warning: comparison with string literal results in unspecified behavior [-Waddress]
+   86 |         else if(sexo == "MASCULINO"){
+      |                      ^~
+tRelatorio.c:89:22: warning: comparison with string literal results in unspecified behavior [-Waddress]
+   89 |         else if(sexo == "OUTROS"){
+      |                      ^~
 tSecretario.c: In function ‘CriaSecretario’:
 tSecretario.c:27:14: warning: comparison with string literal results in unspecified behavior [-Waddress]
    27 |     if(nivel == "ADMIN"){

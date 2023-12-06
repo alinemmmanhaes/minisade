@@ -12,5 +12,6 @@ char* ObtemDiagnosticoLesao(tLesao* lesao);
 char* ObtemRegiaoLesao(tLesao* lesao);
 int ObtemTamanhoLesao(tLesao* lesao);
 int ObtemCirurgiaLesao(tLesao* lesao);
+int ObtemCrioterapiaLesao(tLesao* lesao);
 
 #endif

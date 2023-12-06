@@ -1,6 +1,8 @@
 #ifndef _TBIOPSIA_H_
 #define _TBIOPSIA_H_
 
+#include "tLesao.h"
+
 typedef struct tBiopsia tBiopsia;
 
 tBiopsia* CriaBiopsia(char* nomePaciente, char* cpfPaciente, tLesao** lesoes, int qtdLesoes, char* nomeMedico, char* CRM, char* data);

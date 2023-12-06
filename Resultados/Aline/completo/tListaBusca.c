@@ -1,5 +1,4 @@
 #include "tListaBusca.h"
-#include "tPaciente.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -26,7 +25,9 @@ void AdicionaPacienteListaBusca(tListaBusca* lista, tPaciente* paciente){
 
 void DesalocaListaBusca(void* dado){
     tListaBusca* lista = (tListaBusca*) dado;
-    free(lista);
+    if(lista != NULL){
+        free(lista);
+    }
 }
 
 void imprimeNaTelaListaBusca(void *dado){
