@@ -25,7 +25,9 @@ tLesao* CriaLesao(char* rotulo, char* diagnostico, char* regiao, int tam, int ci
 }
 
 void desalocaLesao(tLesao* dado){
-    free(dado);
+    if(dado != NULL){
+        free(dado);
+    }
 }
 
 char* ObtemRotuloLesao(tLesao* lesao){

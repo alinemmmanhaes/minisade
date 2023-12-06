@@ -29,11 +29,15 @@ tConsulta* CriaConsulta(tMedico* medico, char* cpfPaciente, char* nomePaciente){
 }
 
 void desalocaConsulta(tConsulta* consulta){
-    for(int i=0; i<consulta->qtdLesoes; i++){
-        desalocaLesao(consulta->lesoes[i]);
+    if(consulta != NULL){
+        if(consulta->lesoes != NULL){
+            for(int i=0; i<consulta->qtdLesoes; i++){
+                desalocaLesao(consulta->lesoes[i]);
+            }
+            free(consulta->lesoes);
+        }
+        free(consulta);
     }
-    free(consulta->lesoes);
-    free(consulta);
 }
 
 void LeConsulta(tConsulta* cons){

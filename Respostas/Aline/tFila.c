@@ -17,13 +17,15 @@ tFila *criaFila(){
 }
 
 void desalocaFila(tFila *f){
-    for(int i=0; i<f->numdocs; i++){
-        if(f->docs[i] != NULL){
-            desalocaDocumento(f->docs[i]);
+    if(f != NULL){
+        for(int i=0; i<f->numdocs; i++){
+            if(f->docs[i] != NULL){
+                desalocaDocumento(f->docs[i]);
+            }
         }
+        free(f->docs);
+        free(f);
     }
-    free(f->docs);
-    free(f);
 }
 
 void insereDocumentoFila(tFila *f, void *dado, func_ptr_imprimeNaTela imprimeNaTela,

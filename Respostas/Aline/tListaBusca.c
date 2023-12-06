@@ -25,7 +25,9 @@ void AdicionaPacienteListaBusca(tListaBusca* lista, tPaciente* paciente){
 
 void DesalocaListaBusca(void* dado){
     tListaBusca* lista = (tListaBusca*) dado;
-    free(lista);
+    if(lista != NULL){
+        free(lista);
+    }
 }
 
 void imprimeNaTelaListaBusca(void *dado){
