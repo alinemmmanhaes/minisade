@@ -25,8 +25,6 @@ tBiopsia* CriaBiopsia(char* nomePaciente, char* cpfPaciente, tLesao** lesoes, in
     biop->qtdLesoes = qtdLesoes;
     biop->lesoes = lesoes;
 
-    //CHECAR SE AO MENOS UMA DAS LESOES FOI ENVIADA PARA CIRURGIA ANTES DE CRIAR O DOCUMENTO
-
     return biop;
 }
 

@@ -22,4 +22,9 @@ void ConsultaGerarReceita(tConsulta* cons, tFila* fila);
 void ConsultaEncaminhamento(tConsulta* cons, tFila* fila);
 void ConsultaBiopsia(tConsulta* cons, tFila* fila);
 
+int ObtemQtdLesoesConsulta(tConsulta* cons);
+int ConsultaObtemTamLesaoI(tConsulta* cons, int ind);
+int ConsultaObtemCirurgiaLesaoI(tConsulta* cons, int ind);
+int ConsultaObtemCrioterapiaLesaoI(tConsulta* cons, int ind);
+
 #endif

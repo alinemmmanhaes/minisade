@@ -10,15 +10,31 @@ struct tPaciente
     char nasc[11];
     char tel[15];
     char genero[10];
+    int idade;
+    int nConsultas;
 };
 
-tPaciente* CriaPaciente(char* nome, char* cpf, char* nasc, char* tel, char* genero){
+int CalculaIdadde(int dia, int mes, int ano){
+    if(mes< 11){
+        return 2023-ano;
+    }
+    else if(mes == 11){
+        if(dia <= 9){
+            return 2023-ano;
+        }
+    }
+    return 2022-ano;
+}
+
+tPaciente* CriaPaciente(char* nome, char* cpf, int dia, int mes, int ano, char* tel, char* genero){
     tPaciente* pac = malloc(sizeof(tPaciente));
     strcpy(pac->nome, nome);
     strcpy(pac->cpf, cpf);
-    strcpy(pac->nasc, nasc);
     strcpy(pac->tel, tel);
     strcpy(pac->genero, genero);
+    sprintf(pac->nasc, "%d/%d/%d", dia, mes, ano); //%02d?
+    pac->idade = CalculaIdade(dia, mes, ano);
+    pac->nConsultas = 0;
     return pac;
 }
 
@@ -28,12 +44,24 @@ void DesalocaPaciente(tPaciente* pac){
     }
 }
 
-char* ObtemNomePaciente(tPaciente* pac){
-    return pac->nome;
+const char* ObtemNomePaciente(tPaciente* pac){
+    return &(pac->nome);
 }
 
-char* ObtemCPFPaciente(tPaciente* pac){
-    return pac->cpf;
+const char* ObtemCPFPaciente(tPaciente* pac){
+    return &(pac->cpf);
+}
+
+const char* ObtemSexoPaciente(tPaciente* pac){
+    return &(pac->genero);
+}
+
+int ObtemNumeroAtendimentosPaciente(tPaciente* pac){
+    return pac->nConsultas;
+}
+
+int ObtemIdadePaciente(tPaciente* pac){
+    return pac->idade;
 }
 
 int PacComparaCPF(tPaciente* pac, char* cpf){
@@ -42,4 +70,8 @@ int PacComparaCPF(tPaciente* pac, char* cpf){
         return 1;
     }
     return 0;
+}
+
+int PacIncrementaConsultas(tPaciente* pac){
+    (pac->nConsultas)++;
 }

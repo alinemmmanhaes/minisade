@@ -47,3 +47,7 @@ int ObtemTamanhoLesao(tLesao* lesao){
 int ObtemCirurgiaLesao(tLesao* lesao){
     return lesao->cirurgia;
 }
+
+int ObtemCrioterapiaLesao(tLesao* lesao){
+    return lesao->crioterapia;
+}

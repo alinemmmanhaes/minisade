@@ -147,9 +147,30 @@ void ConsultaBiopsia(tConsulta* cons, tFila* fila){
         tBiopsia* bio = CriaBiopsia(cons->nomePaciente, cons->cpfPaciente, cons->lesoes, cons->qtdLesoes, ObtemNomeMedico(cons->medico), ObtemCRMMedico(cons->medico), cons->data);
         tDocumento* doc = criaDocumento(bio, imprimeNaTelaReceita, imprimeEmArquivoReceita, desalocaReceita);
         insereDocumentoFila(fila, doc, imprimeNaTelaDocumento, imprimeEmArquivoDocumento, desalocaDocumento);
-        printf("SOLICITACAO DE BIOPSIA ENVIADA PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR\n");
+        printf("SOLICITACAO DE BIOPSIA ENVIADA PARA FILA DE IMPRESSAO. ");
     }
+    else{
+        printf("NAO FOI POSSIVEL GERAR A BIOPSIA. ");
+    }
+    
+    printf("PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR\n");
     char c;
     scanf("%c%*c", &c);
     printf("############################################################\n");
+}
+
+int ObtemQtdLesoesConsulta(tConsulta* cons){
+    return cons->qtdLesoes;
+}
+
+int ConsultaObtemTamLesaoI(tConsulta* cons, int ind){
+    return ObtemTamanhoLesao(cons->lesoes[ind]);
+}
+
+int ConsultaObtemCirurgiaLesaoI(tConsulta* cons, int ind){
+    return ObtemCirurgiaLesao(cons->lesoes[ind]);
+}
+
+int ConsultaObtemCrioterapiaLesaoI(tConsulta* cons, int ind){
+    ObtemCrioterapiaLesao(cons->lesoes[ind]);
 }
