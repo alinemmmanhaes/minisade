@@ -86,7 +86,7 @@ void ConsultaCadastraLesao(tConsulta* cons){
 
 void ConsultaGerarReceita(tConsulta* cons, tFila* fila){
     char uso[7], medicamento[50], tipomed[50], intrucoes[300];
-    int qtd;
+    int qtd = 0;
     eTipoUso tpuso;
 
     printf("#################### CONSULTA MEDICA #######################\n");
@@ -101,15 +101,14 @@ void ConsultaGerarReceita(tConsulta* cons, tFila* fila){
     scanf("%d%*c", &qtd);
     printf("INSTRUCOES DE USO: \n");
     scanf("%[^\n]%*c", intrucoes);
-    if(uso == "ORAL"){
+    if(strcmp(uso, "ORAL") == 0){
         tpuso = 0;
     }
-    else if(uso == "TOPICO"){
+    else{
         tpuso = 1;
     }
 
     tReceita* receita = criaReceita(cons->nomePaciente, tpuso, medicamento, tipomed, intrucoes, qtd, ObtemNomeMedico(cons->medico), ObtemCRMMedico(cons->medico), cons->data);
-    //tDocumento* doc = criaDocumento(receita, imprimeNaTelaReceita, imprimeEmArquivoReceita, desalocaReceita);
     insereDocumentoFila(fila, receita, imprimeNaTelaReceita, imprimeEmArquivoReceita, desalocaReceita);
 
     printf("RECEITA ENVIADA PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR\n");
@@ -128,8 +127,7 @@ void ConsultaEncaminhamento(tConsulta* cons, tFila* fila){
     printf("MOTIVO: \n");
     scanf("%[^\n]%*c", mot);
     tEncaminhamento* enc = CriaEncaminhamento(cons->nomePaciente, cons->cpfPaciente, esp, mot, ObtemNomeMedico(cons->medico), ObtemCRMMedico(cons->medico), cons->data);
-    tDocumento* doc = criaDocumento(enc, imprimeNaTelaEncaminhamento, imprimeEmArquivoEncaminhamento, desalocaEncaminhamento);
-    insereDocumentoFila(fila, doc, imprimeNaTelaDocumento, imprimeEmArquivoDocumento, desalocaDocumento);
+    insereDocumentoFila(fila, enc, imprimeNaTelaEncaminhamento, imprimeEmArquivoEncaminhamento, desalocaEncaminhamento);
 
     printf("ENCAMINHAMENTO ENVIADO PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR\n");
     char c;
@@ -149,8 +147,7 @@ void ConsultaBiopsia(tConsulta* cons, tFila* fila){
 
     if(flag){
         tBiopsia* bio = CriaBiopsia(cons->nomePaciente, cons->cpfPaciente, cons->lesoes, cons->qtdLesoes, ObtemNomeMedico(cons->medico), ObtemCRMMedico(cons->medico), cons->data);
-        tDocumento* doc = criaDocumento(bio, imprimeNaTelaBiopsia, imprimeEmArquivoBiopsia, desalocaBiopsia);
-        insereDocumentoFila(fila, doc, imprimeNaTelaDocumento, imprimeEmArquivoDocumento, desalocaDocumento);
+        insereDocumentoFila(fila, bio, imprimeNaTelaBiopsia, imprimeEmArquivoBiopsia, desalocaBiopsia);
         printf("SOLICITACAO DE BIOPSIA ENVIADA PARA FILA DE IMPRESSAO. ");
     }
     

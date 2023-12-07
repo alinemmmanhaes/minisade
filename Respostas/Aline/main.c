@@ -174,7 +174,7 @@ void MenuConsulta(tConsulta* cons, tFila* fila){
 }
 
 int main(int argc, char * argv[]){
-    char path[1000], caminho[1000], bancodedados[1000];
+    char path[1000], caminho[1000], bancodedados[2000];
     sprintf(path, "%s/saida", argv[1]);
 
     tMedico** medicos = NULL;
@@ -252,6 +252,7 @@ int main(int argc, char * argv[]){
         scanf("%d%*c", &op);
         if(op == 1 && tipo == 1){
             char nome[100], cpf[15], nasc[11], tel[15], genero[10], user[20], senha[20], tipo[6];
+            int ehigual = 0;
 
             (nSecretarios)++;
             secretarios = realloc(secretarios, (nSecretarios)*sizeof(tSecretario*));
@@ -273,17 +274,28 @@ int main(int argc, char * argv[]){
             printf("NIVEL DE ACESSO: ");
             scanf("%[^\n]%*c", tipo);
 
-            secretarios[(nSecretarios)-1] = CriaSecretario(nome, cpf, nasc, tel, genero, user, senha, tipo);
+            for(int i=0; i<nSecretarios; i++){
+                if(SecComparaCPF(secretarios[i], cpf)){
+                    ehigual = 1;
+                    printf("CPF JA EXISTENTE. OPERACAO NAO PERMITIDA\n");
+                    break;
+                }
+            }
 
-            printf("\nCADASTRO REALIZADO COM SUCESSO. PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL\n");
+            if(ehigual == 0){
+                secretarios[(nSecretarios)-1] = CriaSecretario(nome, cpf, nasc, tel, genero, user, senha, tipo);
+                printf("\nCADASTRO REALIZADO COM SUCESSO. ");
+            }
+
+            printf("PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL\n");
             char c;
             scanf("%c%*c", &c);
             printf("###############################################################\n");
-            //CadastraSec(&nSecretarios, secretarios);
             //ADICIONANOBANCODEDADOS
         }
         else if(op == 2 && tipo){
             char nome[100], cpf[15], nasc[11], tel[15], genero[10], user[20], senha[20], crm[12];
+            int ehigual = 0;
 
             (nMedicos)++;
             medicos = realloc(medicos, (nMedicos)*sizeof(tMedico*));
@@ -305,18 +317,28 @@ int main(int argc, char * argv[]){
             printf("SENHA: ");
             scanf("%[^\n]%*c", senha);
 
-            medicos[(nMedicos)-1] = CriaMedico(nome, cpf, nasc, tel, genero, crm, user, senha);
+            for(int i=0; i<nMedicos; i++){
+                if(MedComparaCPF(medicos[i], cpf)){
+                    ehigual = 1;
+                    printf("CPF JA EXISTENTE. OPERACAO NAO PERMITIDA\n");
+                    break;
+                }
+            }
 
-            printf("\nCADASTRO REALIZADO COM SUCESSO. PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL\n");
+            if(ehigual == 0){
+                medicos[(nMedicos)-1] = CriaMedico(nome, cpf, nasc, tel, genero, crm, user, senha);
+                printf("\nCADASTRO REALIZADO COM SUCESSO. ");
+            }
+
+            printf("PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL\n");
             char c;
             scanf("%c%*c", &c);
             printf("###############################################################\n");
-            //CadastraMed(&nMedicos, medicos);
             //ADICIONANOBANCODEDADOS
         }
         else if(op == 3 && tipo){
             char nome[100], cpf[15], tel[15], genero[10];
-            int dia, mes, ano;
+            int dia, mes, ano, ehigual = 0;;
 
             (nPacientes)++;
             pacientes = realloc(pacientes, (nPacientes)*sizeof(tPaciente*));
@@ -332,9 +354,20 @@ int main(int argc, char * argv[]){
             printf("GENERO: ");
             scanf("%[^\n]%*c", genero);
 
-            pacientes[(nPacientes)-1] = CriaPaciente(nome, cpf, dia, mes, ano, tel, genero);
+            for(int i=0; i<nPacientes; i++){
+                if(PacComparaCPF(pacientes[i], cpf)){
+                    ehigual = 1;
+                    printf("CPF JA EXISTENTE. OPERACAO NAO PERMITIDA\n");
+                    break;
+                }
+            }
 
-            printf("\nCADASTRO REALIZADO COM SUCESSO. PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL\n");
+            if(ehigual == 0){
+                pacientes[(nPacientes)-1] = CriaPaciente(nome, cpf, dia, mes, ano, tel, genero);
+                printf("\nCADASTRO REALIZADO COM SUCESSO. ");
+            }
+
+            printf("PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL\n");
             char c;
             scanf("%c%*c", &c);
             printf("###############################################################\n");
@@ -421,8 +454,7 @@ int main(int argc, char * argv[]){
                 int num = 0;
                 scanf("%d%*c", &num);
                 if(num == 1){
-                    tDocumento* doc = criaDocumento(listasbusca[nListaBusca - 1], imprimeNaTelaListaBusca, imprimeEmArquivoListaBusca, DesalocaListaBusca);
-                    insereDocumentoFila(filaImpressao, doc, imprimeNaTelaDocumento, imprimeEmArquivoDocumento, desalocaDocumento);
+                    insereDocumentoFila(filaImpressao, listasbusca[nListaBusca - 1], imprimeNaTelaListaBusca, imprimeEmArquivoListaBusca, DesalocaListaBusca);
                     printf("LISTA ENVIADA PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU PRINCIPAL\n");
                     char c;
                     scanf("%c%*c", &c);
@@ -445,8 +477,7 @@ int main(int argc, char * argv[]){
             int num = 0;
             scanf("%d%*c", &num);
             if(num == 1){
-                tDocumento* doc = criaDocumento(relatorios[nRelatorios - 1], imprimeNaTelaRelatorio, imprimeEmArquivoRelatorio, desalocaRelatorio);
-                insereDocumentoFila(filaImpressao, doc, imprimeNaTelaDocumento, imprimeEmArquivoDocumento, desalocaDocumento);
+                insereDocumentoFila(filaImpressao, relatorios[nRelatorios - 1], imprimeNaTelaRelatorio, imprimeEmArquivoRelatorio, desalocaRelatorio);
                 printf("RELATÓRIO ENVIADO PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR\n");
                 char c;
                 scanf("%c%*c", &c);
@@ -501,13 +532,7 @@ int main(int argc, char * argv[]){
     }
     free(consultas);
     desalocaFila(filaImpressao);
-    /*for(int i=0; i<nListaBusca; i++){
-        DesalocaListaBusca(listasbusca[i]);
-    }*/
     free(listasbusca);
-    /*for(int i=0; i<nRelatorios; i++){
-        desalocaRelatorio(relatorios[i]);
-    }*/
     free(relatorios);
 
     return 0;
