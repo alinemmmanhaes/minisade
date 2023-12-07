@@ -26,6 +26,9 @@ void AdicionaPacienteListaBusca(tListaBusca* lista, tPaciente* paciente){
 void DesalocaListaBusca(void* dado){
     tListaBusca* lista = (tListaBusca*) dado;
     if(lista != NULL){
+        if(lista->pacientes != NULL){
+            free(lista->pacientes);
+        }
         free(lista);
     }
 }

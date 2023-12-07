@@ -200,8 +200,6 @@ int main(int argc, char * argv[]){
 
     //VERIFICA SE BANCO DE DADOS FOI CRIADO E LE DADOS ANTERIORES
 
-    //CADASTRA ANTES DE FAZER LOGIN CASO nMed == 0 ou nSec == 0
-    //ACRESCENTAR LOOP DE LOGIN
     while(1){
         if(nMedicos != 0 || nSecretarios != 0){
             while(1){
@@ -224,6 +222,7 @@ int main(int argc, char * argv[]){
             break;
         }
         else{
+            return 1;
             char nome[100], cpf[15], nasc[11], tel[15], genero[10], user[20], senha[20], tipo[6];
 
             (nSecretarios)++;
@@ -249,16 +248,71 @@ int main(int argc, char * argv[]){
         }
     }
 
-    //tipo = 1;
     while(1){
         ImprimeMenuPrincipal(tipo);
         scanf("%d%*c", &op);
         if(op == 1 && tipo == 1){
-            CadastraSec(&nSecretarios, secretarios);
+            char nome[100], cpf[15], nasc[11], tel[15], genero[10], user[20], senha[20], tipo[6];
+
+            (nSecretarios)++;
+            secretarios = realloc(secretarios, (nSecretarios)*sizeof(tSecretario*));
+            printf("#################### CADASTRO SECRETARIO #######################\n");
+            printf("NOME COMPLETO: ");
+            scanf("%[^\n]%*c", nome);
+            printf("CPF: ");
+            scanf("%[^\n]%*c", cpf);
+            printf("DATA DE NASCIMENTO: ");
+            scanf("%[^\n]%*c", nasc);
+            printf("TELEFONE: ");
+            scanf("%[^\n]%*c", tel);
+            printf("GENERO: ");
+            scanf("%[^\n]%*c", genero);
+            printf("NOME DE USUARIO: ");
+            scanf("%[^\n]%*c", user);
+            printf("SENHA: ");
+            scanf("%[^\n]%*c", senha);
+            printf("NIVEL DE ACESSO: ");
+            scanf("%[^\n]%*c", tipo);
+
+            secretarios[(nSecretarios)-1] = CriaSecretario(nome, cpf, nasc, tel, genero, user, senha, tipo);
+
+            printf("\nCADASTRO REALIZADO COM SUCESSO. PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL\n");
+            char c;
+            scanf("%c%*c", &c);
+            printf("###############################################################\n");
+            //CadastraSec(&nSecretarios, secretarios);
             //ADICIONANOBANCODEDADOS
         }
         else if(op == 2 && tipo){
-            CadastraMed(&nMedicos, medicos);
+            char nome[100], cpf[15], nasc[11], tel[15], genero[10], user[20], senha[20], crm[12];
+
+            (nMedicos)++;
+            medicos = realloc(medicos, (nMedicos)*sizeof(tMedico*));
+            printf("#################### CADASTRO MEDICO #######################\n");
+            printf("NOME COMPLETO: ");
+            scanf("%[^\n]%*c", nome);
+            printf("CPF: ");
+            scanf("%[^\n]%*c", cpf);
+            printf("DATA DE NASCIMENTO: ");
+            scanf("%[^\n]%*c", nasc);
+            printf("TELEFONE: ");
+            scanf("%[^\n]%*c", tel);
+            printf("GENERO: ");
+            scanf("%[^\n]%*c", genero);
+            printf("CRM: ");
+            scanf("%[^\n]%*c", crm);
+            printf("NOME DE USUARIO: ");
+            scanf("%[^\n]%*c", user);
+            printf("SENHA: ");
+            scanf("%[^\n]%*c", senha);
+
+            medicos[(nMedicos)-1] = CriaMedico(nome, cpf, nasc, tel, genero, crm, user, senha);
+
+            printf("\nCADASTRO REALIZADO COM SUCESSO. PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL\n");
+            char c;
+            scanf("%c%*c", &c);
+            printf("###############################################################\n");
+            //CadastraMed(&nMedicos, medicos);
             //ADICIONANOBANCODEDADOS
         }
         else if(op == 3 && tipo){
@@ -430,6 +484,32 @@ int main(int argc, char * argv[]){
             printf("OPERACAO INVALIDA\n");
         }
     }
+    
+    for(int i=0; i<nMedicos; i++){
+        DesalocaMedico(medicos[i]);
+    }
+    free(medicos);
+    for(int i=0; i<nPacientes; i++){
+        DesalocaPaciente(pacientes[i]);
+    }
+    free(pacientes);
+    for(int i=0; i<nSecretarios; i++){
+        DesalocaSecretario(secretarios[i]);
+    }
+    free(secretarios);
+    for(int i=0; i<nConsultas; i++){
+        desalocaConsulta(consultas[i]);
+    }
+    free(consultas);
+    desalocaFila(filaImpressao);
+    /*for(int i=0; i<nListaBusca; i++){
+        DesalocaListaBusca(listasbusca[i]);
+    }*/
+    free(listasbusca);
+    /*for(int i=0; i<nRelatorios; i++){
+        desalocaRelatorio(relatorios[i]);
+    }*/
+    free(relatorios);
 
     return 0;
 }
