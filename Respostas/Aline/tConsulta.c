@@ -109,8 +109,8 @@ void ConsultaGerarReceita(tConsulta* cons, tFila* fila){
     }
 
     tReceita* receita = criaReceita(cons->nomePaciente, tpuso, medicamento, tipomed, intrucoes, qtd, ObtemNomeMedico(cons->medico), ObtemCRMMedico(cons->medico), cons->data);
-    tDocumento* doc = criaDocumento(receita, imprimeNaTelaReceita, imprimeEmArquivoReceita, desalocaReceita);
-    insereDocumentoFila(fila, doc, imprimeNaTelaDocumento, imprimeEmArquivoDocumento, desalocaDocumento);
+    //tDocumento* doc = criaDocumento(receita, imprimeNaTelaReceita, imprimeEmArquivoReceita, desalocaReceita);
+    insereDocumentoFila(fila, receita, imprimeNaTelaReceita, imprimeEmArquivoReceita, desalocaReceita);
 
     printf("RECEITA ENVIADA PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR\n");
     char c;

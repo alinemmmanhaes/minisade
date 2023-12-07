@@ -222,7 +222,6 @@ int main(int argc, char * argv[]){
             break;
         }
         else{
-            return 1;
             char nome[100], cpf[15], nasc[11], tel[15], genero[10], user[20], senha[20], tipo[6];
 
             (nSecretarios)++;
