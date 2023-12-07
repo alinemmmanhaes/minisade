@@ -12,7 +12,7 @@ struct tSecretario
     char genero[10];
     char user[20];
     char senha[20];
-    TypeSec tipo;
+    char tipo[6];
 };
 
 tSecretario* CriaSecretario(char* nome, char* cpf, char* nasc, char* tel, char* genero, char* user, char* senha, char* nivel){
@@ -24,12 +24,8 @@ tSecretario* CriaSecretario(char* nome, char* cpf, char* nasc, char* tel, char* 
     strcpy(sec->genero, genero);
     strcpy(sec->user, user);
     strcpy(sec->senha, senha);
-    if(nivel == "ADMIN"){
-        sec->tipo = ADMIN;
-    }
-    else if(nivel == "USER"){
-        sec->tipo = USER;
-    }
+    strcpy(sec->tipo, nivel);
+
     return sec;
 }
 
@@ -39,8 +35,16 @@ void DesalocaSecretario(tSecretario* sec){
     }
 }
 
-TypeSec ObtemTipoSecretario(tSecretario* sec){
-    return sec->tipo;
+char* ObtemNomeSecretario(tSecretario* sec){
+    char* nome = sec->nome;
+    return nome;
+}
+
+int ObtemTipoSecretario(tSecretario* sec){
+    if(strcmp(sec->tipo, "ADMIN") == 0){
+        return 1;
+    }
+    return 2;
 }
 
 int SecComparaCPF(tSecretario* sec, char* cpf){

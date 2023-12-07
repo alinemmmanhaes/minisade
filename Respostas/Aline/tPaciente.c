@@ -45,19 +45,23 @@ void DesalocaPaciente(tPaciente* pac){
 }
 
 char* ObtemNomePaciente(tPaciente* pac){
-    return (pac->nome);
+    char* nome = pac->nome;
+    return nome;
 }
 
 char* ObtemCPFPaciente(tPaciente* pac){
-    return (pac->cpf);
+    char* cpf = pac->cpf;
+    return cpf;
 }
 
 char* ObtemSexoPaciente(tPaciente* pac){
-    return (pac->genero);
+    char* gen = pac->genero;
+    return gen;
 }
 
 char* ObtemDataNascPaciente(tPaciente* pac){
-    return (pac->nasc);
+    char* nasc = pac->nasc;
+    return nasc;
 }
 
 int ObtemNumeroAtendimentosPaciente(tPaciente* pac){
@@ -69,16 +73,17 @@ int ObtemIdadePaciente(tPaciente* pac){
 }
 
 int PacComparaCPF(tPaciente* pac, char* cpf){
-    int resp = strcmp(pac->cpf, cpf);
-    if(resp == 0){
+    if(strcmp(pac->cpf, cpf) == 0){
         return 1;
     }
     return 0;
 }
 
 int PacComparaNome(tPaciente* pac, char* nome){
-    int resp = strcmp(pac->nome, nome);
-    if(resp == 0){
+    if(pac == NULL){
+        return 0;
+    }
+    if(strcmp(pac->nome, nome) == 0){
         return 1;
     }
     return 0;

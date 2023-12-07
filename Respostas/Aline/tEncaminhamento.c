@@ -40,7 +40,7 @@ void imprimeNaTelaEncaminhamento(void *dado){
     printf("ESPECIALIDADE ENCAMINHADA: %s\n\n", enc->especialidade);
     printf("MOTIVO: %s\n\n", enc->motivo);
     printf("%s (%s)\n", enc->nomeMedico, enc->CRM);
-    printf("%s\n", enc->dataStr);
+    printf("%s\n\n", enc->dataStr);
 }
 
 void imprimeEmArquivoEncaminhamento(void *dado, char *path){
@@ -56,7 +56,7 @@ void imprimeEmArquivoEncaminhamento(void *dado, char *path){
     fprintf(pEncaminhamento, "ESPECIALIDADE ENCAMINHADA: %s\n\n", enc->especialidade);
     fprintf(pEncaminhamento, "MOTIVO: %s\n\n", enc->motivo);
     fprintf(pEncaminhamento, "%s (%s)\n", enc->nomeMedico, enc->CRM);
-    fprintf(pEncaminhamento, "%s\n", enc->dataStr);
+    fprintf(pEncaminhamento, "%s\n\n", enc->dataStr);
 
     fclose(pEncaminhamento);
 }

@@ -38,18 +38,21 @@ char* ObtemNomeMedico(tMedico* med){
     if(med == NULL){
         return "\0";
     }
-    return med->nome;
+    char* nome = med->nome;
+    return nome;
 }
 
 char* ObtemCRMMedico(tMedico* med){
     if(med == NULL){
         return "\0";
     }
-    return med->crm;
+    char* crm = med->crm;
+    return crm;
 }
 
 char* ObtemCPFMedico(tMedico* med){
-    return med->cpf;
+    char* cpf = med->cpf;
+    return cpf;
 }
 
 int MedComparaCPF(tMedico* med, char* cpf){

@@ -5,6 +5,7 @@ typedef enum {
     ADMIN = 1,
     USER = 2
 } TypeSec;
+
 typedef struct tSecretario tSecretario;
 
 /**
@@ -15,7 +16,7 @@ tSecretario* CriaSecretario(char* nome, char* cpf, char* nasc, char* tel, char* 
 void DesalocaSecretario(tSecretario* sec);
 
 char* ObtemNomeSecretario(tSecretario* sec);
-TypeSec ObtemTipoSecretario(tSecretario* sec);
+int ObtemTipoSecretario(tSecretario* sec);
 
 int SecComparaCPF(tSecretario* sec, char* cpf);
 int SecComparaUser(tSecretario* sec, char* user);

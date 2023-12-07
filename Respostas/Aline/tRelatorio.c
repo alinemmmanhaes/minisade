@@ -79,13 +79,13 @@ void CalculaRelatorio(tRelatorio* rel, tPaciente** pacs, int nPacs, tConsulta** 
     rel->total = nPacs;
     for(int i=0; i<nPacs; i++){
         char* sexo = ObtemSexoPaciente(pacs[i]);
-        if(sexo == "FEMININO"){
+        if(strcmp(sexo, "FEMININO") == 0){
             (rel->fem)++;
         }
-        else if(sexo == "MASCULINO"){
+        else if(strcmp(sexo, "MASCULINO") == 0){
             (rel->masc)++;
         }
-        else if(sexo == "OUTROS"){
+        else if(strcmp(sexo, "OUTROS") == 0){
             (rel->outros)++;
         }
 

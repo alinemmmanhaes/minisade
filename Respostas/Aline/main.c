@@ -46,12 +46,7 @@ int ObtemTipoUsuario(tMedico** med, int nmed, tSecretario** sec, int nsec, char*
     for(int i=0; i<nsec; i++){
         if(SecComparaUser(sec[i], user) && SecComparaSenha(sec[i], senha)){
             *id = i;
-            if(ObtemTipoSecretario(sec[i]) == ADMIN){
-                tipo = 1;
-            }
-            else if(ObtemTipoSecretario(sec[i]) == USER){
-                tipo = 2;
-            }
+            tipo = ObtemTipoSecretario(sec[i]);
             return tipo;
         }
     }
@@ -179,8 +174,9 @@ void MenuConsulta(tConsulta* cons, tFila* fila){
 }
 
 int main(int argc, char * argv[]){
-    char path[1000];
+    char path[1000], caminho[1000], bancodedados[1000];
     sprintf(path, "%s/saida", argv[1]);
+
     tMedico** medicos = NULL;
     tPaciente** pacientes = NULL;
     tSecretario** secretarios = NULL;
@@ -196,27 +192,64 @@ int main(int argc, char * argv[]){
         return 1;
     }
 
+    printf("################################################\n");
+    printf("DIGITE O CAMINHO DO BANCO DE DADOS: ");
+    scanf("%[^\n]%*c", caminho);
+    printf("\n################################################\n");
+    sprintf(bancodedados, "%s/%s", argv[1], caminho);
+
+    //VERIFICA SE BANCO DE DADOS FOI CRIADO E LE DADOS ANTERIORES
+
     //CADASTRA ANTES DE FAZER LOGIN CASO nMed == 0 ou nSec == 0
     //ACRESCENTAR LOOP DE LOGIN
-    /*while(1){
-        printf("######################## ACESSO MINI-SADE ######################\n");
-        printf("DIGITE SEU LOGIN: ");
-        scanf("%[^\n]%*c", user);
-        printf("DIGITE SUA SENHA: ");
-        scanf("%[^\n]%*c", senha);
+    while(1){
+        if(nMedicos != 0 || nSecretarios != 0){
+            while(1){
+                printf("######################## ACESSO MINI-SADE ######################\n");
+                printf("DIGITE SEU LOGIN: ");
+                scanf("%[^\n]%*c", user);
+                printf("DIGITE SUA SENHA: ");
+                scanf("%[^\n]%*c", senha);
 
-        tipo = ObtemTipoUsuario(medicos, nMedicos, secretarios, nSecretarios, user, senha, &idLogin);
-        if(tipo == -1){
-            printf("SENHA INCORRETA OU USUARIO INEXISTENTE\n");
-            printf("###############################################################\n");
-        }
-        else{
-            printf("###############################################################\n");
+                tipo = ObtemTipoUsuario(medicos, nMedicos, secretarios, nSecretarios, user, senha, &idLogin);
+                if(tipo == -1){
+                    printf("SENHA INCORRETA OU USUARIO INEXISTENTE\n");
+                    printf("###############################################################\n");
+                }
+                else{
+                    printf("###############################################################\n");
+                    break;
+                }
+            }
             break;
         }
-    }*/
+        else{
+            char nome[100], cpf[15], nasc[11], tel[15], genero[10], user[20], senha[20], tipo[6];
 
-    tipo = 1;
+            (nSecretarios)++;
+            secretarios = realloc(secretarios, (nSecretarios)*sizeof(tSecretario*));
+            printf("#################### CADASTRO SECRETARIO #######################\n");
+            printf("NOME COMPLETO: ");
+            scanf("%[^\n]%*c", nome);
+            printf("CPF: ");
+            scanf("%[^\n]%*c", cpf);
+            printf("DATA DE NASCIMENTO: ");
+            scanf("%[^\n]%*c", nasc);
+            printf("TELEFONE: ");
+            scanf("%[^\n]%*c", tel);
+            printf("GENERO: ");
+            scanf("%[^\n]%*c", genero);
+            printf("NOME DE USUARIO: ");
+            scanf("%[^\n]%*c", user);
+            printf("SENHA: ");
+            scanf("%[^\n]%*c", senha);
+            printf("NIVEL DE ACESSO: ");
+            scanf("%[^\n]%*c", tipo);
+            secretarios[(nSecretarios)-1] = CriaSecretario(nome, cpf, nasc, tel, genero, user, senha, tipo);
+        }
+    }
+
+    //tipo = 1;
     while(1){
         ImprimeMenuPrincipal(tipo);
         scanf("%d%*c", &op);
@@ -229,7 +262,29 @@ int main(int argc, char * argv[]){
             //ADICIONANOBANCODEDADOS
         }
         else if(op == 3 && tipo){
-            CadastraPac(&nPacientes, pacientes);
+            char nome[100], cpf[15], tel[15], genero[10];
+            int dia, mes, ano;
+
+            (nPacientes)++;
+            pacientes = realloc(pacientes, (nPacientes)*sizeof(tPaciente*));
+            printf("#################### CADASTRO PACIENTE #######################\n");
+            printf("NOME COMPLETO: ");
+            scanf("%[^\n]%*c", nome);
+            printf("CPF: ");
+            scanf("%[^\n]%*c", cpf);
+            printf("DATA DE NASCIMENTO: ");
+            scanf("%d/%d/%d%*c", &dia, &mes, &ano);
+            printf("TELEFONE: ");
+            scanf("%[^\n]%*c", tel);
+            printf("GENERO: ");
+            scanf("%[^\n]%*c", genero);
+
+            pacientes[(nPacientes)-1] = CriaPaciente(nome, cpf, dia, mes, ano, tel, genero);
+
+            printf("\nCADASTRO REALIZADO COM SUCESSO. PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL\n");
+            char c;
+            scanf("%c%*c", &c);
+            printf("###############################################################\n");
             //ADICIONANOBANCODEDADOS
         }
         else if(op == 4 && tipo != 2){
@@ -240,7 +295,6 @@ int main(int argc, char * argv[]){
             scanf("%[^\n]%*c", cpf);
             for(int i=0; i<nPacientes; i++){
                 if(PacComparaCPF(pacientes[i], cpf)){
-                    //printf("achei.");
                     resp = i;
                     break;
                 }
@@ -269,7 +323,7 @@ int main(int argc, char * argv[]){
 
                 LeConsulta(consultas[nConsultas - 1]);
                 printf("###############################################################\n");
-
+                PacIncrementaConsultas(pacientes[resp]);
                 MenuConsulta(consultas[nConsultas - 1], filaImpressao);
             }
         }
@@ -280,9 +334,9 @@ int main(int argc, char * argv[]){
             printf("NOME DO PACIENTE: ");
             scanf("%[^\n]%*c", nome);
             for(int i=0; i<nPacientes; i++){
-                if(PacComparaNome(pacientes[i], nome)){
+                tPaciente* p = pacientes[i];
+                if(PacComparaNome(p, nome) == 1){
                     total = 1;
-                    break;
                 }
             }
 
@@ -293,12 +347,13 @@ int main(int argc, char * argv[]){
 
             }
             else{
-                nListaBusca++;
+                (nListaBusca)++;
                 listasbusca = realloc(listasbusca, nListaBusca*sizeof(tListaBusca*));
                 listasbusca[nListaBusca - 1] = CriaListaBusca();
                 for(int i=0; i<nPacientes; i++){
-                    if(PacComparaNome(pacientes[i], nome)){
-                        AdicionaPacienteListaBusca(listasbusca[nListaBusca - 1], pacientes[i]);
+                    tPaciente* p = pacientes[i];
+                    if(PacComparaNome(p, nome)){
+                        AdicionaPacienteListaBusca(listasbusca[nListaBusca - 1], p);
                     }
                 }
 
