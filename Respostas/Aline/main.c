@@ -254,8 +254,6 @@ int main(int argc, char * argv[]){
             char nome[100], cpf[15], nasc[11], tel[15], genero[10], user[20], senha[20], tipo[6];
             int ehigual = 0;
 
-            (nSecretarios)++;
-            secretarios = realloc(secretarios, (nSecretarios)*sizeof(tSecretario*));
             printf("#################### CADASTRO SECRETARIO #######################\n");
             printf("NOME COMPLETO: ");
             scanf("%[^\n]%*c", nome);
@@ -283,6 +281,8 @@ int main(int argc, char * argv[]){
             }
 
             if(ehigual == 0){
+                (nSecretarios)++;
+                secretarios = realloc(secretarios, (nSecretarios)*sizeof(tSecretario*));
                 secretarios[(nSecretarios)-1] = CriaSecretario(nome, cpf, nasc, tel, genero, user, senha, tipo);
                 printf("\nCADASTRO REALIZADO COM SUCESSO. ");
             }
@@ -297,8 +297,6 @@ int main(int argc, char * argv[]){
             char nome[100], cpf[15], nasc[11], tel[15], genero[10], user[20], senha[20], crm[12];
             int ehigual = 0;
 
-            (nMedicos)++;
-            medicos = realloc(medicos, (nMedicos)*sizeof(tMedico*));
             printf("#################### CADASTRO MEDICO #######################\n");
             printf("NOME COMPLETO: ");
             scanf("%[^\n]%*c", nome);
@@ -326,6 +324,8 @@ int main(int argc, char * argv[]){
             }
 
             if(ehigual == 0){
+                (nMedicos)++;
+                medicos = realloc(medicos, (nMedicos)*sizeof(tMedico*));
                 medicos[(nMedicos)-1] = CriaMedico(nome, cpf, nasc, tel, genero, crm, user, senha);
                 printf("\nCADASTRO REALIZADO COM SUCESSO. ");
             }
@@ -340,8 +340,6 @@ int main(int argc, char * argv[]){
             char nome[100], cpf[15], tel[15], genero[10];
             int dia, mes, ano, ehigual = 0;;
 
-            (nPacientes)++;
-            pacientes = realloc(pacientes, (nPacientes)*sizeof(tPaciente*));
             printf("#################### CADASTRO PACIENTE #######################\n");
             printf("NOME COMPLETO: ");
             scanf("%[^\n]%*c", nome);
@@ -363,6 +361,8 @@ int main(int argc, char * argv[]){
             }
 
             if(ehigual == 0){
+                (nPacientes)++;
+                pacientes = realloc(pacientes, (nPacientes)*sizeof(tPaciente*));
                 pacientes[(nPacientes)-1] = CriaPaciente(nome, cpf, dia, mes, ano, tel, genero);
                 printf("\nCADASTRO REALIZADO COM SUCESSO. ");
             }
