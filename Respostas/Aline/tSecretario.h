@@ -1,6 +1,8 @@
 #ifndef _TSECRETARIO_H_
 #define _TSECRETARIO_H_
 
+#include <stdio.h>
+
 typedef enum {
     ADMIN = 1,
     USER = 2
@@ -23,5 +25,6 @@ int SecComparaUser(tSecretario* sec, char* user);
 int SecComparaSenha(tSecretario* sec, char* senha);
 
 void SecretarioSalvaBinario(tSecretario** sec, int qtd, char* path);
+int SecretarioRecuperaBinario(tSecretario** sec, FILE* arq);
 
 #endif

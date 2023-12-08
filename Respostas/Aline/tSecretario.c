@@ -84,3 +84,19 @@ void SecretarioSalvaBinario(tSecretario** sec, int qtd, char* path){
 
     fclose(arq);
 }
+
+int SecretarioRecuperaBinario(tSecretario** sec, FILE* arq){
+    int qtd;
+
+    fread(&qtd, sizeof(int), 1, arq);
+    sec = realloc(sec, qtd*sizeof(tSecretario*));
+    
+    for(int i=0; i<qtd; i++){
+        tSecretario* secretario = malloc(sizeof(tSecretario));
+        fread(secretario, sizeof(tSecretario), 1, arq);
+        sec[i] = secretario;
+    }
+
+    fclose(arq);
+    return qtd;
+}

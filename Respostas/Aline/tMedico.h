@@ -1,6 +1,8 @@
 #ifndef _TMEDICO_H_
 #define _TMEDICO_H_
 
+#include <stdio.h>
+
 typedef struct tMedico tMedico;
 
 /**
@@ -19,5 +21,6 @@ int MedComparaUser(tMedico* med, char* user);
 int MedComparaSenha(tMedico* med, char* senha);
 
 void MedicoSalvaBinario(tMedico** med, int qtd, char* path);
+int MedicoRecuperaBinario(tMedico** med, FILE* arq);
 
 #endif

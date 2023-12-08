@@ -1,6 +1,8 @@
 #ifndef _TPACIENTE_H_
 #define _TPACIENTE_H_
 
+#include <stdio.h>
+
 typedef struct tPaciente tPaciente;
 
 /**
@@ -23,5 +25,6 @@ int PacComparaNome(tPaciente* pac, char* nome);
 int PacIncrementaConsultas(tPaciente* pac);
 
 void PacienteSalvaBinario(tPaciente** pac, int qtd, char* path);
+int PacienteRecuperaBinario(tPaciente** pac, FILE* arq);
 
 #endif

@@ -43,7 +43,7 @@ int ObtemTipoUsuario(tMedico** med, int nmed, tSecretario** sec, int nsec, char*
             return tipo;
         }
     }
-    for(int i=0; i<nsec; i++){void PacienteSalvaBinário(tPaciente** pac, int qtd, char* path);
+    for(int i=0; i<nsec; i++){
         if(SecComparaUser(sec[i], user) && SecComparaSenha(sec[i], senha)){
             *id = i;
             tipo = ObtemTipoSecretario(sec[i]);
@@ -174,7 +174,7 @@ void MenuConsulta(tConsulta* cons, tFila* fila){
 }
 
 int main(int argc, char * argv[]){
-    char path[1000], caminho[1000], bancodedados[2000];
+    char path[100], caminho[100], bancodedados[200];
     sprintf(path, "%s/saida", argv[1]);
 
     tMedico** medicos = NULL;
@@ -185,7 +185,7 @@ int main(int argc, char * argv[]){
     tRelatorio** relatorios = NULL;
     tFila* filaImpressao = criaFila();
     int nMedicos = 0, nPacientes = 0, nSecretarios = 0, nConsultas = 0, nListaBusca = 0, nRelatorios = 0, op=0, tipo = -1, idLogin = -1;;
-    char user[20], senha[20];
+    //char user[20], senha[20];
     
     if(argc <= 1){
         printf("ERRO: O diretorio de arquivos de configuracao nao foi informado\n");
@@ -199,17 +199,31 @@ int main(int argc, char * argv[]){
     sprintf(bancodedados, "%s/%s", argv[1], caminho);
 
     //VERIFICA SE BANCO DE DADOS FOI CRIADO E LE DADOS ANTERIORES
+    char pathM[300], pathS[300], pathP[300];
+    sprintf(pathM, "%s/medicos.bin", bancodedados);
+    sprintf(pathS, "%s/secretarios.bin", bancodedados);
+    sprintf(pathP, "%s/pacientes.bin", bancodedados);
+
+    FILE* fSec = fopen(pathS, "rb");
+    FILE* fMed = fopen(pathM, "rb");
+    FILE* fPac = fopen(pathP, "rb");
+    if(fSec != NULL){
+        nMedicos = MedicoRecuperaBinario(medicos, fMed);
+        nPacientes = PacienteRecuperaBinario(pacientes, fPac);
+        nSecretarios = SecretarioRecuperaBinario(secretarios, fSec);
+    }
 
     while(1){
         if(nMedicos != 0 || nSecretarios != 0){
             while(1){
+                char user[20], senha[20];
                 printf("######################## ACESSO MINI-SADE ######################\n");
                 printf("DIGITE SEU LOGIN: ");
                 scanf("%[^\n]%*c", user);
                 printf("DIGITE SUA SENHA: ");
                 scanf("%[^\n]%*c", senha);
 
-                tipo = ObtemTipoUsuario(medicos, nMedicos, secretarios, nSecretarios, user, senha, &idLogin);
+                //tipo = ObtemTipoUsuario(medicos, nMedicos, secretarios, nSecretarios, user, senha, &idLogin);
                 if(tipo == -1){
                     printf("SENHA INCORRETA OU USUARIO INEXISTENTE\n");
                     printf("###############################################################\n");
