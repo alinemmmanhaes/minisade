@@ -21,4 +21,7 @@ int ObtemTipoSecretario(tSecretario* sec);
 int SecComparaCPF(tSecretario* sec, char* cpf);
 int SecComparaUser(tSecretario* sec, char* user);
 int SecComparaSenha(tSecretario* sec, char* senha);
+
+void SecretarioSalvaBinario(tSecretario** sec, int qtd, char* path);
+
 #endif

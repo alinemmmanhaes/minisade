@@ -43,7 +43,7 @@ int ObtemTipoUsuario(tMedico** med, int nmed, tSecretario** sec, int nsec, char*
             return tipo;
         }
     }
-    for(int i=0; i<nsec; i++){
+    for(int i=0; i<nsec; i++){void PacienteSalvaBinário(tPaciente** pac, int qtd, char* path);
         if(SecComparaUser(sec[i], user) && SecComparaSenha(sec[i], senha)){
             *id = i;
             tipo = ObtemTipoSecretario(sec[i]);
@@ -515,6 +515,10 @@ int main(int argc, char * argv[]){
         }
     }
     
+    MedicoSalvaBinario(medicos, nMedicos, bancodedados);
+    PacienteSalvaBinario(pacientes, nPacientes, bancodedados);
+    SecretarioSalvaBinario(secretarios, nSecretarios, bancodedados);
+
     for(int i=0; i<nMedicos; i++){
         DesalocaMedico(medicos[i]);
     }

@@ -27,7 +27,7 @@ int CalculaIdade(int dia, int mes, int ano){
 }
 
 tPaciente* CriaPaciente(char* nome, char* cpf, int dia, int mes, int ano, char* tel, char* genero){
-    tPaciente* pac = malloc(sizeof(tPaciente));
+    tPaciente* pac = calloc(1, sizeof(tPaciente));
     strcpy(pac->nome, nome);
     strcpy(pac->cpf, cpf);
     strcpy(pac->tel, tel);
@@ -91,4 +91,18 @@ int PacComparaNome(tPaciente* pac, char* nome){
 
 int PacIncrementaConsultas(tPaciente* pac){
     (pac->nConsultas)++;
+}
+
+void PacienteSalvaBinario(tPaciente** pac, int qtd, char* path){
+    char diretorio[1000];
+    sprintf(diretorio, "%s/pacientes.bin", path);
+    FILE* arq = fopen(diretorio, "wb");
+
+    fwrite(&qtd, sizeof(int), 1, arq);
+
+    for(int i=0; i<qtd; i++){
+        fwrite(pac[i], sizeof(tPaciente), 1, arq);
+    }
+
+    fclose(arq);
 }

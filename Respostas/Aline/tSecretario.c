@@ -16,7 +16,7 @@ struct tSecretario
 };
 
 tSecretario* CriaSecretario(char* nome, char* cpf, char* nasc, char* tel, char* genero, char* user, char* senha, char* nivel){
-    tSecretario* sec = malloc(sizeof(tSecretario));
+    tSecretario* sec = calloc(1, sizeof(tSecretario));
     strcpy(sec->nome, nome);
     strcpy(sec->cpf, cpf);
     strcpy(sec->nasc, nasc);
@@ -69,4 +69,18 @@ int SecComparaSenha(tSecretario* sec, char* senha){
         return 1;
     }
     return 0;
+}
+
+void SecretarioSalvaBinario(tSecretario** sec, int qtd, char* path){
+    char diretorio[1000];
+    sprintf(diretorio, "%s/secretarios.bin", path);
+    FILE* arq = fopen(diretorio, "wb");
+
+    fwrite(&qtd, sizeof(int), 1, arq);
+
+    for(int i=0; i<qtd; i++){
+        fwrite(sec[i], sizeof(tSecretario), 1, arq);
+    }
+
+    fclose(arq);
 }

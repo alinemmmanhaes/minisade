@@ -22,4 +22,6 @@ int PacComparaNome(tPaciente* pac, char* nome);
 
 int PacIncrementaConsultas(tPaciente* pac);
 
+void PacienteSalvaBinario(tPaciente** pac, int qtd, char* path);
+
 #endif

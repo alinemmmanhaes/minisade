@@ -17,4 +17,7 @@ char* ObtemCPFMedico(tMedico* med);
 int MedComparaCPF(tMedico* med, char* cpf);
 int MedComparaUser(tMedico* med, char* user);
 int MedComparaSenha(tMedico* med, char* senha);
+
+void MedicoSalvaBinario(tMedico** med, int qtd, char* path);
+
 #endif
