@@ -41,6 +41,7 @@ void desalocaConsulta(tConsulta* consulta){
 }
 
 void LeConsulta(tConsulta* cons){
+    int dia, mes, ano;
     printf("DATA DA CONSULTA: ");
     scanf("%[^\n]%*c", cons->data);
     printf("POSSUI DIABETES: ");
@@ -53,6 +54,9 @@ void LeConsulta(tConsulta* cons){
     scanf("%d%*c", &cons->cancer);
     printf("TIPO DE PELE: \n");
     scanf("%[^\n]%*c", cons->pele);
+
+    sscanf(cons->data, "%d/%d/%d", &dia, &mes, &ano);
+    sprintf(cons->data, "%d/%d/%d", dia, mes, ano);
 }
 
 void ConsultaCadastraLesao(tConsulta* cons){

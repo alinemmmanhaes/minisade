@@ -271,10 +271,10 @@ EXECUTANDO O VALGRIND EM CADA CASO:
  - Pasta completo / Caso 3:
  - Arquivo de output gerado: Resultados/Aline/completo/Casos/3/result_valgrind.txt.
  - Valgrind: Ok! allocs: 75, frees: 75, errors: 0 | Desconto do valgrind: 0.0%
- - Resultado para o biopsia.txt: Incorreto!
- - Resultado para o encaminhamento.txt: Incorreto!
+ - Resultado para o biopsia.txt: Ok! Peso: 1.0
+ - Resultado para o encaminhamento.txt: Ok! Peso: 1.0
  - Resultado para o lista_busca.txt: Ok! Peso: 3.0
- - Resultado para o receita.txt: Incorreto!
+ - Resultado para o receita.txt: Ok! Peso: 1.0
  - Resultado para o relatorio_geral.txt: Incorreto!
  - Resultado para o saida.txt: Incorreto!
  - Pasta completo / Caso 4:
@@ -298,10 +298,10 @@ EXECUTANDO O VALGRIND EM CADA CASO:
  - Pasta completo / Caso 6:
  - Arquivo de output gerado: Resultados/Aline/completo/Casos/6/result_valgrind.txt.
  - Valgrind: Ok! allocs: 75, frees: 75, errors: 0 | Desconto do valgrind: 0.0%
- - Resultado para o biopsia.txt: Incorreto!
- - Resultado para o encaminhamento.txt: Incorreto!
+ - Resultado para o biopsia.txt: Ok! Peso: 1.0
+ - Resultado para o encaminhamento.txt: Ok! Peso: 1.0
  - Resultado para o lista_busca.txt: Ok! Peso: 3.0
- - Resultado para o receita.txt: Incorreto!
+ - Resultado para o receita.txt: Ok! Peso: 1.0
  - Resultado para o relatorio_geral.txt: Incorreto!
  - Resultado para o saida.txt: Incorreto!
  - Pasta main / Caso 1:
@@ -325,10 +325,10 @@ EXECUTANDO O VALGRIND EM CADA CASO:
  - Pasta main / Caso 3:
  - Arquivo de output gerado: Resultados/Aline/main/Casos/3/result_valgrind.txt.
  - Valgrind: Ok! allocs: 77, frees: 77, errors: 0 | Desconto do valgrind: 0.0%
- - Resultado para o biopsia.txt: Incorreto!
- - Resultado para o encaminhamento.txt: Incorreto!
+ - Resultado para o biopsia.txt: Ok! Peso: 1.0
+ - Resultado para o encaminhamento.txt: Ok! Peso: 1.0
  - Resultado para o lista_busca.txt: Ok! Peso: 3.0
- - Resultado para o receita.txt: Incorreto!
+ - Resultado para o receita.txt: Ok! Peso: 1.0
  - Resultado para o relatorio_geral.txt: Incorreto!
  - Resultado para o saida.txt: Incorreto!
  - Pasta main / Caso 4:
@@ -352,10 +352,10 @@ EXECUTANDO O VALGRIND EM CADA CASO:
  - Pasta main / Caso 6:
  - Arquivo de output gerado: Resultados/Aline/main/Casos/6/result_valgrind.txt.
  - Valgrind: Ok! allocs: 76, frees: 76, errors: 0 | Desconto do valgrind: 0.0%
- - Resultado para o biopsia.txt: Incorreto!
- - Resultado para o encaminhamento.txt: Incorreto!
+ - Resultado para o biopsia.txt: Ok! Peso: 1.0
+ - Resultado para o encaminhamento.txt: Ok! Peso: 1.0
  - Resultado para o lista_busca.txt: Ok! Peso: 3.0
- - Resultado para o receita.txt: Incorreto!
+ - Resultado para o receita.txt: Ok! Peso: 1.0
  - Resultado para o relatorio_geral.txt: Incorreto!
  - Resultado para o saida.txt: Incorreto!
 
@@ -377,9 +377,9 @@ Nome 0: Aline
  - Pasta tFila (peso 1.0): 30 resultados corretos de 36 / Nota 1.00
  - Pasta tDocumento (peso 1.0): 30 resultados corretos de 36 / Nota 1.00
  - Pasta tReceita (peso 0.5): 30 resultados corretos de 36 / Nota .50
- - Pasta completo (peso 0.0): 19 resultados corretos de 36 / Nota 0
- - Pasta main (peso 7.5): 19 resultados corretos de 36 / Nota 4.24
- - Nota Final Aline: 6.74
+ - Pasta completo (peso 0.0): 25 resultados corretos de 36 / Nota 0
+ - Pasta main (peso 7.5): 25 resultados corretos de 36 / Nota 4.99
+ - Nota Final Aline: 7.49
 
 ----------------------------------------------------------------------------
 

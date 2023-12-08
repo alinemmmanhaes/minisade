@@ -332,13 +332,16 @@ int main(int argc, char * argv[]){
                 medicos = realloc(medicos, (nMedicos)*sizeof(tMedico*));
                 medicos[(nMedicos)-1] = CriaMedico(nome, cpf, nasc, tel, genero, crm, user, senha);
                 printf("\nCADASTRO REALIZADO COM SUCESSO. ");
+                printf("PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL\n");
+                char c;
+                scanf("%c%*c", &c);
+                printf("###############################################################\n");
             }
 
-            printf("PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL\n");
+            /*printf("PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL\n");
             char c;
             scanf("%c%*c", &c);
-            printf("###############################################################\n");
-            //ADICIONANOBANCODEDADOS
+            printf("###############################################################\n");*/
         }
         else if(op == 3 && tipo){
             char nome[100], cpf[15], tel[15], genero[10];
@@ -369,13 +372,16 @@ int main(int argc, char * argv[]){
                 pacientes = realloc(pacientes, (nPacientes)*sizeof(tPaciente*));
                 pacientes[(nPacientes)-1] = CriaPaciente(nome, cpf, dia, mes, ano, tel, genero);
                 printf("\nCADASTRO REALIZADO COM SUCESSO. ");
+                printf("PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL\n");
+                char c;
+                scanf("%c%*c", &c);
+                printf("###############################################################\n");
             }
 
-            printf("PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL\n");
+            /*printf("PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL\n");
             char c;
             scanf("%c%*c", &c);
-            printf("###############################################################\n");
-            //ADICIONANOBANCODEDADOS
+            printf("###############################################################\n");*/
         }
         else if(op == 4 && tipo != 2){
             char cpf[15];

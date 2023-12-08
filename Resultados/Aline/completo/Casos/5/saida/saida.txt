@@ -16,8 +16,6 @@ ESCOLHA UMA OPCAO:
 ###############################################################
 #################### CADASTRO PACIENTE #######################
 NOME COMPLETO: CPF: DATA DE NASCIMENTO: TELEFONE: GENERO: CPF JA EXISTENTE. OPERACAO NAO PERMITIDA
-PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL
-###############################################################
 ####################### MENU PRINCIPAL #########################
 ESCOLHA UMA OPCAO:
 	(1) CADASTRAR SECRETARIO
