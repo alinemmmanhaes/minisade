@@ -14,7 +14,7 @@ struct tPaciente
     int nConsultas;
 };
 
-int CalculaIdadde(int dia, int mes, int ano){
+int CalculaIdade(int dia, int mes, int ano){
     if(mes< 11){
         return 2023-ano;
     }
@@ -27,7 +27,7 @@ int CalculaIdadde(int dia, int mes, int ano){
 }
 
 tPaciente* CriaPaciente(char* nome, char* cpf, int dia, int mes, int ano, char* tel, char* genero){
-    tPaciente* pac = malloc(sizeof(tPaciente));
+    tPaciente* pac = calloc(1, sizeof(tPaciente));
     strcpy(pac->nome, nome);
     strcpy(pac->cpf, cpf);
     strcpy(pac->tel, tel);
@@ -44,16 +44,24 @@ void DesalocaPaciente(tPaciente* pac){
     }
 }
 
-const char* ObtemNomePaciente(tPaciente* pac){
-    return &(pac->nome);
+char* ObtemNomePaciente(tPaciente* pac){
+    char* nome = pac->nome;
+    return nome;
 }
 
-const char* ObtemCPFPaciente(tPaciente* pac){
-    return &(pac->cpf);
+char* ObtemCPFPaciente(tPaciente* pac){
+    char* cpf = pac->cpf;
+    return cpf;
 }
 
-const char* ObtemSexoPaciente(tPaciente* pac){
-    return &(pac->genero);
+char* ObtemSexoPaciente(tPaciente* pac){
+    char* gen = pac->genero;
+    return gen;
+}
+
+char* ObtemDataNascPaciente(tPaciente* pac){
+    char* nasc = pac->nasc;
+    return nasc;
 }
 
 int ObtemNumeroAtendimentosPaciente(tPaciente* pac){
@@ -65,8 +73,17 @@ int ObtemIdadePaciente(tPaciente* pac){
 }
 
 int PacComparaCPF(tPaciente* pac, char* cpf){
-    int resp = strcmp(pac->cpf, cpf);
-    if(resp == 0){
+    if(strcmp(pac->cpf, cpf) == 0){
+        return 1;
+    }
+    return 0;
+}
+
+int PacComparaNome(tPaciente* pac, char* nome){
+    if(pac == NULL){
+        return 0;
+    }
+    if(strcmp(pac->nome, nome) == 0){
         return 1;
     }
     return 0;
@@ -74,4 +91,32 @@ int PacComparaCPF(tPaciente* pac, char* cpf){
 
 int PacIncrementaConsultas(tPaciente* pac){
     (pac->nConsultas)++;
+}
+
+void PacienteSalvaBinario(tPaciente** pac, int qtd, char* path){
+    char diretorio[1000];
+    sprintf(diretorio, "%s/pacientes.bin", path);
+    FILE* arq = fopen(diretorio, "wb");
+
+    fwrite(&qtd, sizeof(int), 1, arq);
+
+    for(int i=0; i<qtd; i++){
+        fwrite(pac[i], sizeof(tPaciente), 1, arq);
+    }
+
+    fclose(arq);
+}
+
+tPaciente** PacienteRecuperaBinario(tPaciente** pac, FILE* arq, int* qtd){
+    fread(qtd, sizeof(int), 1, arq);
+    pac = realloc(pac, (*qtd)*sizeof(tPaciente*));
+    
+    for(int i=0; i<(*qtd); i++){
+        tPaciente* paciente = malloc(sizeof(tPaciente));
+        fread(paciente, sizeof(tPaciente), 1, arq);
+        pac[i] = paciente;
+    }
+
+    fclose(arq);
+    return pac;
 }

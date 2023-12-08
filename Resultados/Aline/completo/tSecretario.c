@@ -12,11 +12,11 @@ struct tSecretario
     char genero[10];
     char user[20];
     char senha[20];
-    TypeSec tipo;
+    char tipo[6];
 };
 
 tSecretario* CriaSecretario(char* nome, char* cpf, char* nasc, char* tel, char* genero, char* user, char* senha, char* nivel){
-    tSecretario* sec = malloc(sizeof(tSecretario));
+    tSecretario* sec = calloc(1, sizeof(tSecretario));
     strcpy(sec->nome, nome);
     strcpy(sec->cpf, cpf);
     strcpy(sec->nasc, nasc);
@@ -24,12 +24,8 @@ tSecretario* CriaSecretario(char* nome, char* cpf, char* nasc, char* tel, char* 
     strcpy(sec->genero, genero);
     strcpy(sec->user, user);
     strcpy(sec->senha, senha);
-    if(nivel == "ADMIN"){
-        sec->tipo = ADMIN;
-    }
-    else if(nivel == "USER"){
-        sec->tipo = USER;
-    }
+    strcpy(sec->tipo, nivel);
+
     return sec;
 }
 
@@ -39,8 +35,16 @@ void DesalocaSecretario(tSecretario* sec){
     }
 }
 
-TypeSec ObtemTipoSecretario(tSecretario* sec){
-    return sec->tipo;
+char* ObtemNomeSecretario(tSecretario* sec){
+    char* nome = sec->nome;
+    return nome;
+}
+
+int ObtemTipoSecretario(tSecretario* sec){
+    if(strcmp(sec->tipo, "ADMIN") == 0){
+        return 1;
+    }
+    return 2;
 }
 
 int SecComparaCPF(tSecretario* sec, char* cpf){
@@ -65,4 +69,32 @@ int SecComparaSenha(tSecretario* sec, char* senha){
         return 1;
     }
     return 0;
+}
+
+void SecretarioSalvaBinario(tSecretario** sec, int qtd, char* path){
+    char diretorio[1000];
+    sprintf(diretorio, "%s/secretarios.bin", path);
+    FILE* arq = fopen(diretorio, "wb");
+
+    fwrite(&qtd, sizeof(int), 1, arq);
+
+    for(int i=0; i<qtd; i++){
+        fwrite(sec[i], sizeof(tSecretario), 1, arq);
+    }
+
+    fclose(arq);
+}
+
+tSecretario** SecretarioRecuperaBinario(tSecretario** sec, FILE* arq, int* qtd){
+    fread(qtd, sizeof(int), 1, arq);
+    sec = realloc(sec, (*qtd)*sizeof(tSecretario*));
+    
+    for(int i=0; i<(*qtd); i++){
+        tSecretario* secretario = malloc(sizeof(tSecretario));
+        fread(secretario, sizeof(tSecretario), 1, arq);
+        sec[i] = secretario;
+    }
+
+    fclose(arq);
+    return sec;
 }

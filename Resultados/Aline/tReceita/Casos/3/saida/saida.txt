@@ -1,7 +1,7 @@
 ################################################
 DIGITE O CAMINHO DO BANCO DE DADOS: ################################################
-Caminho do banco de dados: Resultados/Aline/tReceita/Casos/3/../../
-Caminho da pasta de saida: Resultados/Aline/tReceita/Casos/3/saida
+Caminho do banco de dados: Casos/3/../../
+Caminho da pasta de saida: Casos/3/saida
 ######################## ACESSO MINI-SADE ######################
 DIGITE SEU LOGIN: DIGITE SUA SENHA: ###############################################################
 ####################### MENU PRINCIPAL #########################
@@ -213,6 +213,7 @@ USAR 4X AOS DIA
 
 SORAKA ESTRELA (CRM-2454)
 1/12/2023
+
 RECEITUARIO
 NOME: SYNDRA
 
@@ -225,12 +226,12 @@ USAR 1X AO DIA ANTES DE DORMIR
 
 SORAKA ESTRELA (CRM-2454)
 1/12/2023
+
 PACIENTE: SYNDRA
 CPF: 155.941.270-46
 
 SOLICITACAO DE BIOPSIA PARA AS LESOES:
 L1 - MELANOMA - PEITORAL - 12MM
-L2 - NEVO - COXA - 18MM
 
 SORAKA ESTRELA (CRM-2454)
 1/12/2023

@@ -63,7 +63,7 @@ void imprimeNaTelaReceita(void *dado){
 
 void imprimeEmArquivoReceita(void *dado, char *path){
     tReceita* receita = (tReceita*)dado;
-    FILE * pReceita;
+    FILE * pReceita = NULL;
     char direceita[1000];
 
     sprintf(direceita, "%s/receita.txt", path);

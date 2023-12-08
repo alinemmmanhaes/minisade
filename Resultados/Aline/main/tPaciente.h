@@ -1,6 +1,8 @@
 #ifndef _TPACIENTE_H_
 #define _TPACIENTE_H_
 
+#include <stdio.h>
+
 typedef struct tPaciente tPaciente;
 
 /**
@@ -10,14 +12,19 @@ tPaciente* CriaPaciente(char* nome, char* cpf, int dia, int mes, int ano, char* 
 
 void DesalocaPaciente(tPaciente* pac);
 
-const char* ObtemNomePaciente(tPaciente* pac);
-const char* ObtemCPFPaciente(tPaciente* pac);
-const char* ObtemSexoPaciente(tPaciente* pac);
+char* ObtemNomePaciente(tPaciente* pac);
+char* ObtemCPFPaciente(tPaciente* pac);
+char* ObtemSexoPaciente(tPaciente* pac);
+char* ObtemDataNascPaciente(tPaciente* pac);
 int ObtemNumeroAtendimentosPaciente(tPaciente* pac);
 int ObtemIdadePaciente(tPaciente* pac);
 
 int PacComparaCPF(tPaciente* pac, char* cpf);
+int PacComparaNome(tPaciente* pac, char* nome);
 
 int PacIncrementaConsultas(tPaciente* pac);
+
+void PacienteSalvaBinario(tPaciente** pac, int qtd, char* path);
+tPaciente** PacienteRecuperaBinario(tPaciente** pac, FILE* arq, int* qtd);
 
 #endif

@@ -53,7 +53,7 @@ void imprimeNaTelaBiopsia(void *dado){
     printf("\n");
     
     printf("%s (%s)\n", biop->nomeMedico, biop->CRM);
-    printf("%s\n", biop->dataStr);
+    printf("%s\n\n", biop->dataStr);
 }
 
 void imprimeEmArquivoBiopsia(void *dado, char *path){
@@ -80,7 +80,7 @@ void imprimeEmArquivoBiopsia(void *dado, char *path){
     fprintf(pBiopsia, "\n");
 
     fprintf(pBiopsia, "%s (%s)\n", biop->nomeMedico, biop->CRM);
-    fprintf(pBiopsia ,"%s\n", biop->dataStr);
+    fprintf(pBiopsia ,"%s\n\n", biop->dataStr);
 
     fclose(pBiopsia);
 }

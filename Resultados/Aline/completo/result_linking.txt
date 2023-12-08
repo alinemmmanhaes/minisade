@@ -1,5 +1,14 @@
-/usr/bin/ld: /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/Scrt1.o: in function `_start':
-(.text+0x1b): undefined reference to `main'
-/usr/bin/ld: Resultados/Aline/completo/tPaciente.o: in function `CriaPaciente':
-tPaciente.c:(.text+0x107): undefined reference to `CalculaIdade'
+/usr/bin/ld: Resultados/Aline/completo/main.o: in function `DesalocaArquivos':
+main.c:(.text+0x14d): undefined reference to `desalocaFila'
+/usr/bin/ld: Resultados/Aline/completo/main.o: in function `main':
+main.c:(.text+0xd42): undefined reference to `criaFila'
+/usr/bin/ld: main.c:(.text+0x229c): undefined reference to `insereDocumentoFila'
+/usr/bin/ld: main.c:(.text+0x2474): undefined reference to `insereDocumentoFila'
+/usr/bin/ld: main.c:(.text+0x2579): undefined reference to `imprimeFila'
+/usr/bin/ld: Resultados/Aline/completo/tConsulta.o: in function `ConsultaGerarReceita':
+tConsulta.c:(.text+0x689): undefined reference to `insereDocumentoFila'
+/usr/bin/ld: Resultados/Aline/completo/tConsulta.o: in function `ConsultaEncaminhamento':
+tConsulta.c:(.text+0x83e): undefined reference to `insereDocumentoFila'
+/usr/bin/ld: Resultados/Aline/completo/tConsulta.o: in function `ConsultaBiopsia':
+tConsulta.c:(.text+0x9b8): undefined reference to `insereDocumentoFila'
 collect2: error: ld returned 1 exit status

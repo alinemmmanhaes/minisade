@@ -25,6 +25,6 @@ int PacComparaNome(tPaciente* pac, char* nome);
 int PacIncrementaConsultas(tPaciente* pac);
 
 void PacienteSalvaBinario(tPaciente** pac, int qtd, char* path);
-int PacienteRecuperaBinario(tPaciente** pac, FILE* arq);
+tPaciente** PacienteRecuperaBinario(tPaciente** pac, FILE* arq, int* qtd);
 
 #endif

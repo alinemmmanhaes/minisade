@@ -93,18 +93,16 @@ void MedicoSalvaBinario(tMedico** med, int qtd, char* path){
     fclose(arq);
 }
 
-int MedicoRecuperaBinario(tMedico** med, FILE* arq){
-    int qtd;
-
-    fread(&qtd, sizeof(int), 1, arq);
-    med = realloc(med, qtd*sizeof(tMedico*));
+tMedico** MedicoRecuperaBinario(tMedico** med, FILE* arq, int* qtd){
+    fread(qtd, sizeof(int), 1, arq);
+    med = realloc(med, (*qtd)*sizeof(tMedico*));
     
-    for(int i=0; i<qtd; i++){
+    for(int i=0; i<(*qtd); i++){
         tMedico* medico = malloc(sizeof(tMedico));
         fread(medico, sizeof(tMedico), 1, arq);
         med[i] = medico;
     }
 
     fclose(arq);
-    return qtd;
+    return med;
 }

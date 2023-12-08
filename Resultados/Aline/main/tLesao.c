@@ -31,15 +31,18 @@ void desalocaLesao(tLesao* dado){
 }
 
 char* ObtemRotuloLesao(tLesao* lesao){
-    return lesao->rotulo;
+    char* rot = lesao->rotulo;
+    return rot;
 }
 
 char* ObtemDiagnosticoLesao(tLesao* lesao){
-    return lesao->diagnostico;
+    char* diag = lesao->diagnostico;
+    return diag;
 }
 
 char* ObtemRegiaoLesao(tLesao* lesao){
-    return lesao->regiao;
+    char* reg = lesao->regiao;
+    return reg;
 }
 
 int ObtemTamanhoLesao(tLesao* lesao){

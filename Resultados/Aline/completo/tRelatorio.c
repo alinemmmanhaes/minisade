@@ -7,12 +7,14 @@ struct tRelatorio
 {
     int total; //pacientes
     int pacAtendidos;
-    float mediaIdade;
+    int somaIdade;
+    int mediaIdade;
     int fem;
     int masc;
     int outros;
-    float tamLesoes;
+    int tamLesoes;
     int nLesoes;
+    int mediaTam;
     int cirurgia;
     int crioterapia;
 };
@@ -22,12 +24,14 @@ tRelatorio* CriaRelatorio(){
     tRelatorio* rel = malloc(sizeof(tRelatorio));
     rel->total = 0;
     rel->pacAtendidos = 0;
+    rel->somaIdade = 0;
     rel->mediaIdade = 0;
     rel->fem = 0;
     rel->masc = 0;
     rel->outros = 0;
     rel->tamLesoes = 0;
     rel->nLesoes = 0;
+    rel->mediaTam = 0;
     rel->cirurgia = 0;
     rel->crioterapia = 0;
     return rel;
@@ -43,12 +47,12 @@ void desalocaRelatorio(void *dado){
 void imprimeNaTelaRelatorio(void *dado){
     tRelatorio* rel = (tRelatorio*)dado;
     printf("NUMERO TOTAL DE PACIENTES ATENDIDOS: %d\n", rel->pacAtendidos);
-    printf("IDADE MEDIA: %d\n", (rel->mediaIdade)/(rel->total));
+    printf("IDADE MEDIA: %d\n", (rel->mediaIdade));
     printf("DISTRIBUICAO POR GENERO:\n");
     printf("- FEMININO: %d\n", rel->fem);
     printf("- MASCULINO: %d\n", rel->masc);
     printf("- OUTROS: %d\n", rel->outros);
-    printf("TAMANHO MEDIO DAS LESOES: %d\n", (rel->tamLesoes)/(rel->nLesoes));
+    printf("TAMANHO MEDIO DAS LESOES: %d\n", (rel->mediaTam));
     printf("NUMERO TOTAL DE LESOES: %d\n", rel->nLesoes);
     printf("NUMERO TOTAL DE CIRURGIAS: %d\n", rel->cirurgia);
     printf("NUMERO TOTAL DE CRIOTERAPIA: %d\n\n", rel->crioterapia);
@@ -62,12 +66,12 @@ void imprimeEmArquivoRelatorio(void *dado, char *path){
     pRelatorio = fopen(direlatorio, "a");
 
     fprintf(pRelatorio, "NUMERO TOTAL DE PACIENTES ATENDIDOS: %d\n", rel->pacAtendidos);
-    fprintf(pRelatorio, "IDADE MEDIA: %d\n", (rel->mediaIdade)/(rel->total));
+    fprintf(pRelatorio, "IDADE MEDIA: %d\n", (rel->mediaIdade));
     fprintf(pRelatorio, "DISTRIBUICAO POR GENERO:\n");
     fprintf(pRelatorio, "- FEMININO: %d\n", rel->fem);
     fprintf(pRelatorio, "- MASCULINO: %d\n", rel->masc);
     fprintf(pRelatorio, "- OUTROS: %d\n", rel->outros);
-    fprintf(pRelatorio, "TAMANHO MEDIO DAS LESOES: %d\n", (rel->tamLesoes)/(rel->nLesoes));
+    fprintf(pRelatorio, "TAMANHO MEDIO DAS LESOES: %d\n", (rel->mediaTam));
     fprintf(pRelatorio, "NUMERO TOTAL DE LESOES: %d\n", rel->nLesoes);
     fprintf(pRelatorio, "NUMERO TOTAL DE CIRURGIAS: %d\n", rel->cirurgia);
     fprintf(pRelatorio, "NUMERO TOTAL DE CRIOTERAPIA: %d\n\n", rel->crioterapia);
@@ -78,15 +82,14 @@ void imprimeEmArquivoRelatorio(void *dado, char *path){
 void CalculaRelatorio(tRelatorio* rel, tPaciente** pacs, int nPacs, tConsulta** cons, int nCons){
     rel->total = nPacs;
     for(int i=0; i<nPacs; i++){
-        char sexo[10];
-        sexo = ObtemSexoPaciente(pacs[i]);
-        if(sexo == "FEMININO"){
+        char* sexo = ObtemSexoPaciente(pacs[i]);
+        if(strcmp(sexo, "FEMININO") == 0){
             (rel->fem)++;
         }
-        else if(sexo == "MASCULINO"){
+        else if(strcmp(sexo, "MASCULINO") == 0){
             (rel->masc)++;
         }
-        else if(sexo == "OUTROS"){
+        else if(strcmp(sexo, "OUTROS") == 0){
             (rel->outros)++;
         }
 
@@ -94,7 +97,13 @@ void CalculaRelatorio(tRelatorio* rel, tPaciente** pacs, int nPacs, tConsulta** 
             (rel->pacAtendidos)++;
         }
 
-        (rel->mediaIdade) += ObtemIdadePaciente(pacs[i]);
+        (rel->somaIdade) += ObtemIdadePaciente(pacs[i]);
+    }
+    if(rel->total == 0){
+        rel->mediaIdade = 0;
+    }
+    else{
+        rel->mediaIdade = (rel->somaIdade)/(rel->total);
     }
 
     for(int i=0; i<nCons; i++){
@@ -104,5 +113,11 @@ void CalculaRelatorio(tRelatorio* rel, tPaciente** pacs, int nPacs, tConsulta** 
             (rel->cirurgia) += ConsultaObtemCirurgiaLesaoI(cons[i], j);
             (rel->crioterapia) += ConsultaObtemCrioterapiaLesaoI(cons[i], j);
         }
+    }
+    if(rel->nLesoes == 0){
+        rel->mediaTam = 0;
+    }
+    else{
+        rel->mediaTam = (rel->tamLesoes)/(rel->nLesoes);
     }
 }

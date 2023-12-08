@@ -1,10 +1,13 @@
 #ifndef _TSECRETARIO_H_
 #define _TSECRETARIO_H_
 
+#include <stdio.h>
+
 typedef enum {
-    ADMIN = 0,
-    USER = 1
+    ADMIN = 1,
+    USER = 2
 } TypeSec;
+
 typedef struct tSecretario tSecretario;
 
 /**
@@ -15,9 +18,13 @@ tSecretario* CriaSecretario(char* nome, char* cpf, char* nasc, char* tel, char* 
 void DesalocaSecretario(tSecretario* sec);
 
 char* ObtemNomeSecretario(tSecretario* sec);
-TypeSec ObtemTipoSecretario(tSecretario* sec);
+int ObtemTipoSecretario(tSecretario* sec);
 
 int SecComparaCPF(tSecretario* sec, char* cpf);
 int SecComparaUser(tSecretario* sec, char* user);
 int SecComparaSenha(tSecretario* sec, char* senha);
+
+void SecretarioSalvaBinario(tSecretario** sec, int qtd, char* path);
+tSecretario** SecretarioRecuperaBinario(tSecretario** sec, FILE* arq, int* qtd);
+
 #endif

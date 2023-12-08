@@ -16,7 +16,7 @@ struct tMedico
 };
 
 tMedico* CriaMedico(char* nome, char* cpf, char* nasc, char* tel, char* genero, char* crm, char* user, char* senha){
-    tMedico* medico = malloc(sizeof(tMedico));
+    tMedico* medico = calloc(1, sizeof(tMedico));
     strcpy(medico->nome, nome);
     strcpy(medico->cpf, cpf);
     strcpy(medico->nasc, nasc);
@@ -35,15 +35,24 @@ void DesalocaMedico(tMedico* med){
 }
 
 char* ObtemNomeMedico(tMedico* med){
-    return med->nome;
+    if(med == NULL){
+        return "\0";
+    }
+    char* nome = med->nome;
+    return nome;
 }
 
 char* ObtemCRMMedico(tMedico* med){
-    return med->crm;
+    if(med == NULL){
+        return "\0";
+    }
+    char* crm = med->crm;
+    return crm;
 }
 
 char* ObtemCPFMedico(tMedico* med){
-    return med->cpf;
+    char* cpf = med->cpf;
+    return cpf;
 }
 
 int MedComparaCPF(tMedico* med, char* cpf){
@@ -68,4 +77,32 @@ int MedComparaSenha(tMedico* med, char* senha){
         return 1;
     }
     return 0;
+}
+
+void MedicoSalvaBinario(tMedico** med, int qtd, char* path){
+    char diretorio[1000];
+    sprintf(diretorio, "%s/medicos.bin", path);
+    FILE* arq = fopen(diretorio, "wb");
+
+    fwrite(&qtd, sizeof(int), 1, arq);
+
+    for(int i=0; i<qtd; i++){
+        fwrite(med[i], sizeof(tMedico), 1, arq);
+    }
+
+    fclose(arq);
+}
+
+tMedico** MedicoRecuperaBinario(tMedico** med, FILE* arq, int* qtd){
+    fread(qtd, sizeof(int), 1, arq);
+    med = realloc(med, (*qtd)*sizeof(tMedico*));
+    
+    for(int i=0; i<(*qtd); i++){
+        tMedico* medico = malloc(sizeof(tMedico));
+        fread(medico, sizeof(tMedico), 1, arq);
+        med[i] = medico;
+    }
+
+    fclose(arq);
+    return med;
 }

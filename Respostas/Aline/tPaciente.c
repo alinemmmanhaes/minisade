@@ -107,18 +107,16 @@ void PacienteSalvaBinario(tPaciente** pac, int qtd, char* path){
     fclose(arq);
 }
 
-int PacienteRecuperaBinario(tPaciente** pac, FILE* arq){
-    int qtd;
-
-    fread(&qtd, sizeof(int), 1, arq);
-    pac = realloc(pac, qtd*sizeof(tPaciente*));
+tPaciente** PacienteRecuperaBinario(tPaciente** pac, FILE* arq, int* qtd){
+    fread(qtd, sizeof(int), 1, arq);
+    pac = realloc(pac, (*qtd)*sizeof(tPaciente*));
     
-    for(int i=0; i<qtd; i++){
+    for(int i=0; i<(*qtd); i++){
         tPaciente* paciente = malloc(sizeof(tPaciente));
         fread(paciente, sizeof(tPaciente), 1, arq);
         pac[i] = paciente;
     }
 
     fclose(arq);
-    return qtd;
+    return pac;
 }
