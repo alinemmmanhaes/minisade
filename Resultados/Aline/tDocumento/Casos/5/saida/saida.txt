@@ -1,7 +1,7 @@
 ################################################
 DIGITE O CAMINHO DO BANCO DE DADOS: ################################################
-Caminho do banco de dados: Casos/5/../../
-Caminho da pasta de saida: Casos/5/saida
+Caminho do banco de dados: Resultados/Aline/tDocumento/Casos/5/../../
+Caminho da pasta de saida: Resultados/Aline/tDocumento/Casos/5/saida
 ######################## ACESSO MINI-SADE ######################
 DIGITE SEU LOGIN: DIGITE SUA SENHA: ###############################################################
 ####################### MENU PRINCIPAL #########################

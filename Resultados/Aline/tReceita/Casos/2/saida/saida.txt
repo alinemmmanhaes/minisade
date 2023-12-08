@@ -1,7 +1,7 @@
 ################################################
 DIGITE O CAMINHO DO BANCO DE DADOS: ################################################
-Caminho do banco de dados: Casos/2/../../
-Caminho da pasta de saida: Casos/2/saida
+Caminho do banco de dados: Resultados/Aline/tReceita/Casos/2/../../
+Caminho da pasta de saida: Resultados/Aline/tReceita/Casos/2/saida
 ######################## ACESSO MINI-SADE ######################
 DIGITE SEU LOGIN: DIGITE SUA SENHA: ###############################################################
 ####################### MENU PRINCIPAL #########################
@@ -272,7 +272,6 @@ USAR 2X AOS DIA, PRINCIPALMENTE ANTES DE SAIR NO SOL
 
  ()
 19/11/2023
-
 PACIENTE: VAINE
 CPF: 524.456.852-98
 

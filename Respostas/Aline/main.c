@@ -166,38 +166,6 @@ void CadastraPac(int* total, tPaciente** pac){
     printf("###############################################################\n");
 }
 
-void MenuConsulta(tConsulta* cons, tFila* fila){
-    int op = 0;
-
-    while(1){
-        printf("#################### CONSULTA MEDICA #######################\n");
-        printf("ESCOLHA UMA OPCAO:\n");
-        printf("\t(1) CADASTRAR LESAO\n");
-        printf("\t(2) GERAR RECEITA MEDICA\n");
-        printf("\t(3) SOLICITACAO DE BIOPSIA\n");
-        printf("\t(4) ENCAMINHAMENTO\n");
-        printf("\t(5) ENCERRAR CONSULTA\n");
-        printf("############################################################\n");
-
-        scanf("%d%*c", &op);
-        if(op == 1){
-            ConsultaCadastraLesao(cons);
-        }
-        else if(op == 2){
-            ConsultaGerarReceita(cons, fila);
-        }
-        else if(op == 3){
-            ConsultaBiopsia(cons, fila);
-        }
-        else if(op == 4){
-            ConsultaEncaminhamento(cons, fila);
-        }
-        else if(op == 5){
-            break;
-        }
-    }
-}
-
 int main(int argc, char * argv[]){
     char path[100], caminho[100], bancodedados[200];
     sprintf(path, "%s/saida", argv[1]);
@@ -323,13 +291,11 @@ int main(int argc, char * argv[]){
                 secretarios = realloc(secretarios, (nSecretarios)*sizeof(tSecretario*));
                 secretarios[(nSecretarios)-1] = CriaSecretario(nome, cpf, nasc, tel, genero, user, senha, tipo);
                 printf("\nCADASTRO REALIZADO COM SUCESSO. ");
+                printf("PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL\n");
+                char c;
+                scanf("%c%*c", &c);
+                printf("###############################################################\n");
             }
-
-            printf("PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL\n");
-            char c;
-            scanf("%c%*c", &c);
-            printf("###############################################################\n");
-            //ADICIONANOBANCODEDADOS
         }
         else if(op == 2 && tipo){
             char nome[100], cpf[15], nasc[11], tel[15], genero[10], user[20], senha[20], crm[12];
@@ -448,7 +414,7 @@ int main(int argc, char * argv[]){
                 LeConsulta(consultas[nConsultas - 1]);
                 printf("###############################################################\n");
                 PacIncrementaConsultas(pacientes[resp]);
-                MenuConsulta(consultas[nConsultas - 1], filaImpressao);
+                MenuDaConsulta(consultas[nConsultas - 1], filaImpressao);
             }
         }
         else if(op == 5){

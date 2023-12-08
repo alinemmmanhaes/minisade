@@ -27,4 +27,6 @@ int ConsultaObtemTamLesaoI(tConsulta* cons, int ind);
 int ConsultaObtemCirurgiaLesaoI(tConsulta* cons, int ind);
 int ConsultaObtemCrioterapiaLesaoI(tConsulta* cons, int ind);
 
+void MenuDaConsulta(tConsulta* cons, tFila* fila);
+
 #endif

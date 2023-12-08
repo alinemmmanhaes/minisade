@@ -1,7 +1,7 @@
 ################################################
 DIGITE O CAMINHO DO BANCO DE DADOS: ################################################
-Caminho do banco de dados: Casos/6/../../
-Caminho da pasta de saida: Casos/6/saida
+Caminho do banco de dados: Resultados/Aline/tDocumento/Casos/6/../../
+Caminho da pasta de saida: Resultados/Aline/tDocumento/Casos/6/saida
 ######################## ACESSO MINI-SADE ######################
 DIGITE SEU LOGIN: DIGITE SUA SENHA: ###############################################################
 ####################### MENU PRINCIPAL #########################
@@ -174,7 +174,7 @@ DISTRIBUICAO POR GENERO:
 TAMANHO MEDIO DAS LESOES: 18
 NUMERO TOTAL DE LESOES: 8
 NUMERO TOTAL DE CIRURGIAS: 6
-NUMERO TOTAL DE CRIOTERAPIA: 2
+NUMERO TOTAL DE CRIOTERAPIA: 3
 
 ESCOLHA UMA OPCAO:
 	(1) ENVIAR PARA IMPRESSAO
@@ -255,7 +255,7 @@ DISTRIBUICAO POR GENERO:
 TAMANHO MEDIO DAS LESOES: 18
 NUMERO TOTAL DE LESOES: 8
 NUMERO TOTAL DE CIRURGIAS: 6
-NUMERO TOTAL DE CRIOTERAPIA: 2
+NUMERO TOTAL DE CRIOTERAPIA: 3
 
 
 PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU ANTERIOR

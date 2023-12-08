@@ -176,3 +176,35 @@ int ConsultaObtemCirurgiaLesaoI(tConsulta* cons, int ind){
 int ConsultaObtemCrioterapiaLesaoI(tConsulta* cons, int ind){
     ObtemCrioterapiaLesao(cons->lesoes[ind]);
 }
+
+void MenuDaConsulta(tConsulta* cons, tFila* fila){
+    int op = 0;
+
+    while(1){
+        printf("#################### CONSULTA MEDICA #######################\n");
+        printf("ESCOLHA UMA OPCAO:\n");
+        printf("\t(1) CADASTRAR LESAO\n");
+        printf("\t(2) GERAR RECEITA MEDICA\n");
+        printf("\t(3) SOLICITACAO DE BIOPSIA\n");
+        printf("\t(4) ENCAMINHAMENTO\n");
+        printf("\t(5) ENCERRAR CONSULTA\n");
+        printf("############################################################\n");
+
+        scanf("%d%*c", &op);
+        if(op == 1){
+            ConsultaCadastraLesao(cons);
+        }
+        else if(op == 2){
+            ConsultaGerarReceita(cons, fila);
+        }
+        else if(op == 3){
+            ConsultaBiopsia(cons, fila);
+        }
+        else if(op == 4){
+            ConsultaEncaminhamento(cons, fila);
+        }
+        else if(op == 5){
+            break;
+        }
+    }
+}

@@ -1,7 +1,7 @@
 ################################################
 DIGITE O CAMINHO DO BANCO DE DADOS: ################################################
-Caminho do banco de dados: Casos/5/../../
-Caminho da pasta de saida: Casos/5/saida
+Caminho do banco de dados: Resultados/Aline/tReceita/Casos/5/../../
+Caminho da pasta de saida: Resultados/Aline/tReceita/Casos/5/saida
 ######################## ACESSO MINI-SADE ######################
 DIGITE SEU LOGIN: DIGITE SUA SENHA: ###############################################################
 ####################### MENU PRINCIPAL #########################
@@ -193,7 +193,6 @@ USAR EM CASO DE MUITA DOR
 
  ()
 10/10/2020
-
 PACIENTE: LEONA
 CPF: 245.632.548-10
 

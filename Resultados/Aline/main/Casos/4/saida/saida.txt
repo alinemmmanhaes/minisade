@@ -1,10 +1,9 @@
 ################################################
-DIGITE O CAMINHO DO BANCO DE DADOS: ################################################
-Caminho do banco de dados: Casos/4/../../
-Caminho da pasta de saida: Casos/4/saida
+DIGITE O CAMINHO DO BANCO DE DADOS: 
+################################################
 ######################## ACESSO MINI-SADE ######################
-DIGITE SEU LOGIN: DIGITE SUA SENHA: ###############################################################
-SENHA INCORRETA OU USUARIO INEXISTENTE
+DIGITE SEU LOGIN: DIGITE SUA SENHA: SENHA INCORRETA OU USUARIO INEXISTENTE
+###############################################################
 ######################## ACESSO MINI-SADE ######################
 DIGITE SEU LOGIN: DIGITE SUA SENHA: ###############################################################
 ####################### MENU PRINCIPAL #########################
@@ -16,9 +15,8 @@ ESCOLHA UMA OPCAO:
 	(8) FINALIZAR O PROGRAMA
 ###############################################################
 #################### BUSCAR PACIENTES #######################
-NOME DO PACIENTE: 
-NENHUM PACIENTE FOI ENCONTRADO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR
-############################################################
+NOME DO PACIENTE: NENHUM PACIENTE FOI ENCONTRADO. PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL
+###############################################################
 ####################### MENU PRINCIPAL #########################
 ESCOLHA UMA OPCAO:
 	(4) REALIZAR CONSULTA
@@ -28,9 +26,8 @@ ESCOLHA UMA OPCAO:
 	(8) FINALIZAR O PROGRAMA
 ###############################################################
 #################### BUSCAR PACIENTES #######################
-NOME DO PACIENTE: 
-NENHUM PACIENTE FOI ENCONTRADO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR
-############################################################
+NOME DO PACIENTE: NENHUM PACIENTE FOI ENCONTRADO. PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL
+###############################################################
 ####################### MENU PRINCIPAL #########################
 ESCOLHA UMA OPCAO:
 	(4) REALIZAR CONSULTA
@@ -48,10 +45,10 @@ NOME DO PACIENTE: PACIENTES ENCONTRADOS:
 ESCOLHA UMA OPCAO:
 	(1) ENVIAR LISTA PARA IMPRESSAO
 	(2) RETORNAR AO MENU PRINCIPAL
-############################################################
+###############################################################
 
 LISTA ENVIADA PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU PRINCIPAL
-############################################################
+###############################################################
 ####################### MENU PRINCIPAL #########################
 ESCOLHA UMA OPCAO:
 	(4) REALIZAR CONSULTA
@@ -67,18 +64,18 @@ DISTRIBUICAO POR GENERO:
 - FEMININO: 2
 - MASCULINO: 2
 - OUTROS: 3
-TAMANHO MEDIO DAS LESOES: 15
-NUMERO TOTAL DE LESOES: 4
-NUMERO TOTAL DE CIRURGIAS: 3
-NUMERO TOTAL DE CRIOTERAPIA: 1
+TAMANHO MEDIO DAS LESOES: 0
+NUMERO TOTAL DE LESOES: 0
+NUMERO TOTAL DE CIRURGIAS: 0
+NUMERO TOTAL DE CRIOTERAPIA: 0
 
 ESCOLHA UMA OPCAO:
 	(1) ENVIAR PARA IMPRESSAO
 	(2) RETORNAR AO MENU PRINCIPAL
-############################################################
+###############################################################
 
 RELATÓRIO ENVIADO PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR
-############################################################
+###############################################################
 ####################### MENU PRINCIPAL #########################
 ESCOLHA UMA OPCAO:
 	(4) REALIZAR CONSULTA
@@ -93,7 +90,7 @@ CPF DO PACIENTE: ---
 -DATA DE NASCIMENTO: 12/12/1980
 ---
 DATA DA CONSULTA: POSSUI DIABETES: FUMANTE: ALERGIA A MEDICAMENTO: HISTORICO DE CANCER: TIPO DE PELE: 
-############################################################
+###############################################################
 #################### CONSULTA MEDICA #######################
 ESCOLHA UMA OPCAO:
 	(1) CADASTRAR LESAO
@@ -214,7 +211,7 @@ ESCOLHA UMA OPCAO:
 ESCOLHA UMA OPCAO:
 	(1) EXECUTAR FILA DE IMPRESSAO
 	(2) RETORNAR AO MENU PRINCIPAL
-############################################################
+###############################################################
 ################ FILA DE IMPRESSAO MEDICA ##################
 EXECUTANDO FILA DE IMPRESSAO:
 1 - TRYNDAMERE (200.171.256-10)
@@ -226,10 +223,10 @@ DISTRIBUICAO POR GENERO:
 - FEMININO: 2
 - MASCULINO: 2
 - OUTROS: 3
-TAMANHO MEDIO DAS LESOES: 15
-NUMERO TOTAL DE LESOES: 4
-NUMERO TOTAL DE CIRURGIAS: 3
-NUMERO TOTAL DE CRIOTERAPIA: 1
+TAMANHO MEDIO DAS LESOES: 0
+NUMERO TOTAL DE LESOES: 0
+NUMERO TOTAL DE CIRURGIAS: 0
+NUMERO TOTAL DE CRIOTERAPIA: 0
 
 PACIENTE: TRYNDAMERE
 CPF: 955.141.970-96
@@ -295,12 +292,12 @@ DR. MUNDO (CRM-01234)
 
 
 PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU ANTERIOR
-############################################################
+###############################################################
 ################ FILA DE IMPRESSAO MEDICA ##################
 ESCOLHA UMA OPCAO:
 	(1) EXECUTAR FILA DE IMPRESSAO
 	(2) RETORNAR AO MENU PRINCIPAL
-############################################################
+###############################################################
 ####################### MENU PRINCIPAL #########################
 ESCOLHA UMA OPCAO:
 	(4) REALIZAR CONSULTA

@@ -1,7 +1,7 @@
 ################################################
 DIGITE O CAMINHO DO BANCO DE DADOS: ################################################
-Caminho do banco de dados: Casos/4/../../
-Caminho da pasta de saida: Casos/4/saida
+Caminho do banco de dados: Resultados/Aline/tReceita/Casos/4/../../
+Caminho da pasta de saida: Resultados/Aline/tReceita/Casos/4/saida
 ######################## ACESSO MINI-SADE ######################
 DIGITE SEU LOGIN: DIGITE SUA SENHA: ###############################################################
 SENHA INCORRETA OU USUARIO INEXISTENTE
@@ -261,7 +261,6 @@ USAR TODOS OS DIAS ANTES DE DORMIR
 
 DR. MUNDO (CRM-01234)
 20/10/2022
-
 RECEITUARIO
 NOME: TRYNDAMERE
 
@@ -274,7 +273,6 @@ USAR APOS A CIRURGIA EM CASO DE DOR
 
 DR. MUNDO (CRM-01234)
 20/10/2022
-
 PACIENTE: TRYNDAMERE
 CPF: 955.141.970-96
 
