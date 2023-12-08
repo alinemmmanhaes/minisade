@@ -528,6 +528,7 @@ int main(int argc, char * argv[]){
     MedicoSalvaBinario(medicos, nMedicos, bancodedados);
     PacienteSalvaBinario(pacientes, nPacientes, bancodedados);
     SecretarioSalvaBinario(secretarios, nSecretarios, bancodedados);
+    ConsultaSalvaBinario(consultas, nConsultas, bancodedados);
 
     DesalocaPessoas(pacientes, secretarios, medicos, nMedicos, nPacientes, nSecretarios);
     DesalocaArquivos(consultas, nConsultas, filaImpressao, listasbusca, relatorios);

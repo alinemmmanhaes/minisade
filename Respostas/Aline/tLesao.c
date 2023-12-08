@@ -14,7 +14,7 @@ struct tLesao
 };
 
 tLesao* CriaLesao(char* rotulo, char* diagnostico, char* regiao, int tam, int cirurgia, int crioterapia){
-    tLesao* lesao = malloc(sizeof(tLesao));
+    tLesao* lesao = calloc(1, sizeof(tLesao));
     strcpy(lesao->rotulo, rotulo);
     strcpy(lesao->diagnostico, diagnostico);
     strcpy(lesao->regiao, regiao);
@@ -55,4 +55,10 @@ int ObtemCirurgiaLesao(tLesao* lesao){
 
 int ObtemCrioterapiaLesao(tLesao* lesao){
     return lesao->crioterapia;
+}
+
+void LesaoSalvaBinario(tLesao** lesao, int qtd, FILE* arq){
+    for(int i=0; i<qtd; i++){
+        fwrite(lesao[i], sizeof(tLesao), 1, arq);
+    }
 }

@@ -1,6 +1,7 @@
 #ifndef _TCONSULTA_H_
 #define _TCONSULTA_H_
 
+#include <stdio.h>
 #include "tLesao.h"
 #include "tMedico.h"
 #include "tReceita.h"
@@ -28,5 +29,7 @@ int ConsultaObtemCirurgiaLesaoI(tConsulta* cons, int ind);
 int ConsultaObtemCrioterapiaLesaoI(tConsulta* cons, int ind);
 
 void MenuDaConsulta(tConsulta* cons, tFila* fila);
+
+void ConsultaSalvaBinario(tConsulta** cons, int qtd, char* path);
 
 #endif

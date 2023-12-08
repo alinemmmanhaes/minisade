@@ -19,7 +19,7 @@ struct tConsulta
 };
 
 tConsulta* CriaConsulta(tMedico* medico, char* cpfPaciente, char* nomePaciente){
-    tConsulta* cons = malloc(sizeof(tConsulta));
+    tConsulta* cons = calloc(1, sizeof(tConsulta));
     cons->medico = medico;
     cons->lesoes = NULL;
     cons->qtdLesoes = 0;
@@ -211,4 +211,23 @@ void MenuDaConsulta(tConsulta* cons, tFila* fila){
             break;
         }
     }
+}
+
+void ConsultaSalvaBinario(tConsulta** cons, int qtd, char* path){
+    char diretorio[1000];
+    char dirlesao[1000];
+    sprintf(diretorio, "%s/consultas.bin", path);
+    sprintf(dirlesao, "%s/lesoes.bin", path);
+    FILE* arq = fopen(diretorio, "wb");
+    FILE* arqLesao = fopen(dirlesao, "wb");
+
+    fwrite(&qtd, sizeof(int), 1, arq);
+
+    for(int i=0; i<qtd; i++){
+        fwrite(cons[i], sizeof(tConsulta), 1, arq);
+        LesaoSalvaBinario(cons[i]->lesoes, cons[i]->qtdLesoes, arqLesao);
+    }
+
+    fclose(arq);
+    fclose(arqLesao);
 }
