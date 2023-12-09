@@ -5,7 +5,8 @@
 
 struct tConsulta
 {
-    tMedico* medico;
+    char nomeMedico[100];
+    char CRM[12];
     tLesao** lesoes;
     int qtdLesoes;
     char data[11];
@@ -20,11 +21,12 @@ struct tConsulta
 
 tConsulta* CriaConsulta(tMedico* medico, char* cpfPaciente, char* nomePaciente){
     tConsulta* cons = calloc(1, sizeof(tConsulta));
-    cons->medico = medico;
     cons->lesoes = NULL;
     cons->qtdLesoes = 0;
     strcpy(cons->cpfPaciente, cpfPaciente);
     strcpy(cons->nomePaciente, nomePaciente);
+    strcpy(cons->nomeMedico, ObtemNomeMedico(medico));
+    strcpy(cons->CRM, ObtemCRMMedico(medico));
     return cons;
 }
 
@@ -112,7 +114,7 @@ void ConsultaGerarReceita(tConsulta* cons, tFila* fila){
         tpuso = 1;
     }
 
-    tReceita* receita = criaReceita(cons->nomePaciente, tpuso, medicamento, tipomed, intrucoes, qtd, ObtemNomeMedico(cons->medico), ObtemCRMMedico(cons->medico), cons->data);
+    tReceita* receita = criaReceita(cons->nomePaciente, tpuso, medicamento, tipomed, intrucoes, qtd, cons->nomeMedico, cons->CRM, cons->data);
     insereDocumentoFila(fila, receita, imprimeNaTelaReceita, imprimeEmArquivoReceita, desalocaReceita);
 
     printf("RECEITA ENVIADA PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR\n");
@@ -130,7 +132,7 @@ void ConsultaEncaminhamento(tConsulta* cons, tFila* fila){
     scanf("%[^\n]%*c", esp);
     printf("MOTIVO: \n");
     scanf("%[^\n]%*c", mot);
-    tEncaminhamento* enc = CriaEncaminhamento(cons->nomePaciente, cons->cpfPaciente, esp, mot, ObtemNomeMedico(cons->medico), ObtemCRMMedico(cons->medico), cons->data);
+    tEncaminhamento* enc = CriaEncaminhamento(cons->nomePaciente, cons->cpfPaciente, esp, mot, cons->nomeMedico, cons->CRM, cons->data);
     insereDocumentoFila(fila, enc, imprimeNaTelaEncaminhamento, imprimeEmArquivoEncaminhamento, desalocaEncaminhamento);
 
     printf("ENCAMINHAMENTO ENVIADO PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR\n");
@@ -150,7 +152,7 @@ void ConsultaBiopsia(tConsulta* cons, tFila* fila){
     }
 
     if(flag){
-        tBiopsia* bio = CriaBiopsia(cons->nomePaciente, cons->cpfPaciente, cons->lesoes, cons->qtdLesoes, ObtemNomeMedico(cons->medico), ObtemCRMMedico(cons->medico), cons->data);
+        tBiopsia* bio = CriaBiopsia(cons->nomePaciente, cons->cpfPaciente, cons->lesoes, cons->qtdLesoes, cons->nomeMedico, cons->CRM, cons->data);
         insereDocumentoFila(fila, bio, imprimeNaTelaBiopsia, imprimeEmArquivoBiopsia, desalocaBiopsia);
         printf("SOLICITACAO DE BIOPSIA ENVIADA PARA FILA DE IMPRESSAO. ");
     }
@@ -178,7 +180,7 @@ int ConsultaObtemCirurgiaLesaoI(tConsulta* cons, int ind){
 }
 
 int ConsultaObtemCrioterapiaLesaoI(tConsulta* cons, int ind){
-    ObtemCrioterapiaLesao(cons->lesoes[ind]);
+    return ObtemCrioterapiaLesao(cons->lesoes[ind]);
 }
 
 void MenuDaConsulta(tConsulta* cons, tFila* fila){
@@ -230,4 +232,30 @@ void ConsultaSalvaBinario(tConsulta** cons, int qtd, char* path){
 
     fclose(arq);
     fclose(arqLesao);
+}
+
+tConsulta** ConsultaRecuperaBinario(tConsulta** cons, char* path, int* qtd){
+    char diretorio[1000], dirlesao[1000];
+    sprintf(diretorio, "%s/consultas.bin", path);
+    FILE* arq = fopen(diretorio, "rb");
+    if(arq == NULL){
+        return NULL;
+    }
+    sprintf(dirlesao, "%s/lesoes.bin", path);
+    FILE* arqLesao = fopen(dirlesao, "rb");
+
+    fread(qtd, sizeof(int), 1, arq);
+    cons = realloc(cons, (*qtd)*sizeof(tConsulta*));
+    
+    for(int i=0; i<(*qtd); i++){
+        tConsulta* consulta = malloc(sizeof(tConsulta));
+        fread(consulta, sizeof(tConsulta), 1, arq);
+        consulta->lesoes = NULL;
+        consulta->lesoes = LesaoRecuperaBinario(consulta->lesoes, arqLesao, consulta->qtdLesoes);
+        cons[i] = consulta;
+    }
+
+    fclose(arq);
+    fclose(arqLesao);
+    return cons;
 }

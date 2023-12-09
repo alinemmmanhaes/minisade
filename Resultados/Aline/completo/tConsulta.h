@@ -31,5 +31,6 @@ int ConsultaObtemCrioterapiaLesaoI(tConsulta* cons, int ind);
 void MenuDaConsulta(tConsulta* cons, tFila* fila);
 
 void ConsultaSalvaBinario(tConsulta** cons, int qtd, char* path);
+tConsulta** ConsultaRecuperaBinario(tConsulta** cons, char* path, int* qtd);
 
 #endif

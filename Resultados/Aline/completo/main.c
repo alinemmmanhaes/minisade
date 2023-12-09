@@ -204,6 +204,7 @@ int main(int argc, char * argv[]){
         pacientes = PacienteRecuperaBinario(pacientes, fPac, &nPacientes);
         secretarios = SecretarioRecuperaBinario(secretarios, fSec, &nSecretarios);
     }
+    consultas = ConsultaRecuperaBinario(consultas, bancodedados, &nConsultas);
 
     while(1){
         if(nMedicos != 0 || nSecretarios != 0){
