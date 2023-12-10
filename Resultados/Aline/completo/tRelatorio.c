@@ -121,3 +121,26 @@ void CalculaRelatorio(tRelatorio* rel, tPaciente** pacs, int nPacs, tConsulta** 
         rel->mediaTam = (rel->tamLesoes)/(rel->nLesoes);
     }
 }
+
+void GeraRelatorio(int nPacientes, int nConsultas, tPaciente** pacientes, tConsulta** consultas, tRelatorio*** relatorios, int* nRelatorios, tFila* filaImpressao){
+    printf("#################### RELATORIO GERAL #######################\n");
+    (*nRelatorios)++;
+    *relatorios = realloc(*relatorios, (*nRelatorios)*sizeof(tRelatorio*));
+    *relatorios[(*nRelatorios) - 1] = CriaRelatorio();
+    CalculaRelatorio(*relatorios[(*nRelatorios) - 1], pacientes, nPacientes, consultas, nConsultas);
+    imprimeNaTelaRelatorio(*relatorios[(*nRelatorios) - 1]);
+
+    printf("ESCOLHA UMA OPCAO:\n");
+    printf("\t(1) ENVIAR PARA IMPRESSAO\n");
+    printf("\t(2) RETORNAR AO MENU PRINCIPAL\n");
+    printf("###############################################################\n\n");
+    int num = 0;
+    scanf("%d%*c", &num);
+    if(num == 1){
+        insereDocumentoFila(filaImpressao, *relatorios[(*nRelatorios) - 1], imprimeNaTelaRelatorio, imprimeEmArquivoRelatorio, desalocaRelatorio);
+        printf("RELATÓRIO ENVIADO PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR\n");
+        char c;
+        scanf("%c%*c", &c);
+        printf("###############################################################\n");
+    }
+}

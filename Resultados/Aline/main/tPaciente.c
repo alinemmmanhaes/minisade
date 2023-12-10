@@ -107,16 +107,51 @@ void PacienteSalvaBinario(tPaciente** pac, int qtd, char* path){
     fclose(arq);
 }
 
-tPaciente** PacienteRecuperaBinario(tPaciente** pac, FILE* arq, int* qtd){
+void PacienteRecuperaBinario(tPaciente*** pac, FILE* arq, int* qtd){
     fread(qtd, sizeof(int), 1, arq);
-    pac = realloc(pac, (*qtd)*sizeof(tPaciente*));
+    *pac = realloc(*pac, (*qtd)*sizeof(tPaciente*));
     
     for(int i=0; i<(*qtd); i++){
         tPaciente* paciente = malloc(sizeof(tPaciente));
         fread(paciente, sizeof(tPaciente), 1, arq);
-        pac[i] = paciente;
+        (*pac)[i] = paciente;
     }
 
     fclose(arq);
-    return pac;
+}
+
+void CadastraPaciente(int* nPacientes, tPaciente*** pacientes){
+    char nome[100], cpf[15], tel[15], genero[10];
+    int dia, mes, ano, ehigual = 0;;
+
+    printf("#################### CADASTRO PACIENTE #######################\n");
+    printf("NOME COMPLETO: ");
+    scanf("%[^\n]%*c", nome);
+    printf("CPF: ");
+    scanf("%[^\n]%*c", cpf);
+    printf("DATA DE NASCIMENTO: ");
+    scanf("%d/%d/%d%*c", &dia, &mes, &ano);
+    printf("TELEFONE: ");
+    scanf("%[^\n]%*c", tel);
+    printf("GENERO: ");
+    scanf("%[^\n]%*c", genero);
+
+    for(int i=0; i<*nPacientes; i++){
+        if(PacComparaCPF((*pacientes)[i], cpf)){
+            ehigual = 1;
+            printf("CPF JA EXISTENTE. OPERACAO NAO PERMITIDA\n");
+            break;
+        }
+    }
+
+    if(ehigual == 0){
+        (*nPacientes)++;
+        *pacientes = realloc(*pacientes, (*nPacientes)*sizeof(tPaciente*));
+        (*pacientes)[(*nPacientes)-1] = CriaPaciente(nome, cpf, dia, mes, ano, tel, genero);
+        printf("\nCADASTRO REALIZADO COM SUCESSO. ");
+        printf("PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL\n");
+        char c;
+        scanf("%c%*c", &c);
+        printf("###############################################################\n");
+    }
 }

@@ -93,16 +93,57 @@ void MedicoSalvaBinario(tMedico** med, int qtd, char* path){
     fclose(arq);
 }
 
-tMedico** MedicoRecuperaBinario(tMedico** med, FILE* arq, int* qtd){
+void MedicoRecuperaBinario(tMedico*** med, FILE* arq, int* qtd){
     fread(qtd, sizeof(int), 1, arq);
-    med = realloc(med, (*qtd)*sizeof(tMedico*));
+    *med = realloc(*med, (*qtd)*sizeof(tMedico*));
     
     for(int i=0; i<(*qtd); i++){
         tMedico* medico = malloc(sizeof(tMedico));
         fread(medico, sizeof(tMedico), 1, arq);
-        med[i] = medico;
+        (*med)[i] = medico;
     }
 
     fclose(arq);
-    return med;
+}
+
+void CadastraMedico(int* nMedicos, tMedico*** medicos){
+    char nome[100], cpf[15], nasc[11], tel[15], genero[10], user[20], senha[20], crm[12];
+    int ehigual = 0;
+
+    printf("#################### CADASTRO MEDICO #######################\n");
+    printf("NOME COMPLETO: ");
+    scanf("%[^\n]%*c", nome);
+    printf("CPF: ");
+    scanf("%[^\n]%*c", cpf);
+    printf("DATA DE NASCIMENTO: ");
+    scanf("%[^\n]%*c", nasc);
+    printf("TELEFONE: ");
+    scanf("%[^\n]%*c", tel);
+    printf("GENERO: ");
+    scanf("%[^\n]%*c", genero);
+    printf("CRM: ");
+    scanf("%[^\n]%*c", crm);
+    printf("NOME DE USUARIO: ");
+    scanf("%[^\n]%*c", user);
+    printf("SENHA: ");
+    scanf("%[^\n]%*c", senha);
+
+    for(int i=0; i<*nMedicos; i++){
+        if(MedComparaCPF((*medicos)[i], cpf)){
+            ehigual = 1;
+            printf("CPF JA EXISTENTE. OPERACAO NAO PERMITIDA\n");
+            break;
+        }
+    }
+
+    if(ehigual == 0){
+        (*nMedicos)++;
+        *medicos = realloc(*medicos, (*nMedicos)*sizeof(tMedico*));
+        (*medicos)[(*nMedicos)-1] = CriaMedico(nome, cpf, nasc, tel, genero, crm, user, senha);
+        printf("\nCADASTRO REALIZADO COM SUCESSO. ");
+        printf("PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL\n");
+        char c;
+        scanf("%c%*c", &c);
+        printf("###############################################################\n");
+    }
 }

@@ -21,6 +21,8 @@ int MedComparaUser(tMedico* med, char* user);
 int MedComparaSenha(tMedico* med, char* senha);
 
 void MedicoSalvaBinario(tMedico** med, int qtd, char* path);
-tMedico** MedicoRecuperaBinario(tMedico** med, FILE* arq, int* qtd);
+void MedicoRecuperaBinario(tMedico*** med, FILE* arq, int* qtd);
+
+void CadastraMedico(int* nMedicos, tMedico*** medicos);
 
 #endif

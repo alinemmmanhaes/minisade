@@ -234,7 +234,7 @@ void ConsultaSalvaBinario(tConsulta** cons, int qtd, char* path){
     fclose(arqLesao);
 }
 
-tConsulta** ConsultaRecuperaBinario(tConsulta** cons, char* path, int* qtd){
+void ConsultaRecuperaBinario(tConsulta*** cons, char* path, int* qtd){
     char diretorio[1000], dirlesao[1000];
     sprintf(diretorio, "%s/consultas.bin", path);
     FILE* arq = fopen(diretorio, "rb");
@@ -245,17 +245,58 @@ tConsulta** ConsultaRecuperaBinario(tConsulta** cons, char* path, int* qtd){
     FILE* arqLesao = fopen(dirlesao, "rb");
 
     fread(qtd, sizeof(int), 1, arq);
-    cons = realloc(cons, (*qtd)*sizeof(tConsulta*));
+    *cons = realloc(*cons, (*qtd)*sizeof(tConsulta*));
     
     for(int i=0; i<(*qtd); i++){
         tConsulta* consulta = malloc(sizeof(tConsulta));
         fread(consulta, sizeof(tConsulta), 1, arq);
         consulta->lesoes = NULL;
-        consulta->lesoes = LesaoRecuperaBinario(consulta->lesoes, arqLesao, consulta->qtdLesoes);
-        cons[i] = consulta;
+        LesaoRecuperaBinario(&(consulta->lesoes), arqLesao, consulta->qtdLesoes);
+        (*cons)[i] = consulta;
     }
 
     fclose(arq);
     fclose(arqLesao);
-    return cons;
+}
+
+void RealizaConsultas(int nPacientes, tPaciente** pacientes, int* nConsultas, tConsulta*** consultas, tFila* filaImpressao, int tipo, int idLogin, tMedico** medicos){
+    char cpf[15];
+    int resp = -1;
+    printf("#################### CONSULTA MEDICA #######################\n");
+    printf("CPF DO PACIENTE: ");
+    scanf("%[^\n]%*c", cpf);
+    for(int i=0; i<nPacientes; i++){
+        if(PacComparaCPF(pacientes[i], cpf)){
+            resp = i;
+            break;
+        }
+    }
+    if(resp == -1){
+        printf("PACIENTE SEM CADASTRO\n\n");
+        printf("PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL\n");
+        char c;
+        scanf("%c%*c", &c);
+        printf("###############################################################\n");
+    }
+    else{
+        printf("---\n");
+        printf("-NOME: %s\n", ObtemNomePaciente(pacientes[resp]));
+        printf("-DATA DE NASCIMENTO: %s\n", ObtemDataNascPaciente(pacientes[resp]));
+        printf("---\n");
+
+        (*nConsultas)++;
+        *consultas = realloc(*consultas, (*nConsultas)*sizeof(tConsulta*));
+        if(tipo){
+            (*consultas)[*nConsultas - 1] = CriaConsulta(NULL, ObtemCPFPaciente(pacientes[resp]), ObtemNomePaciente(pacientes[resp]));
+        }
+        else{
+            (*consultas)[*nConsultas - 1] = CriaConsulta(medicos[idLogin], ObtemCPFPaciente(pacientes[resp]), ObtemNomePaciente(pacientes[resp]));
+        }
+
+        LeConsulta((*consultas)[*nConsultas - 1]);
+        printf("###############################################################\n");
+        PacIncrementaConsultas(pacientes[resp]);
+        MenuDaConsulta((*consultas)[*nConsultas - 1], filaImpressao);
+    }
+    //return consultas;
 }

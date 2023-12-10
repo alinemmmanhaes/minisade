@@ -56,3 +56,53 @@ void imprimeEmArquivoListaBusca(void *dado, char *path){
 
     fclose(pLista);
 }
+
+void RealizaBusca(int nPacientes, tPaciente** pacientes, int* nListaBusca, tListaBusca*** listasbusca, tFila* filaImpressao){
+    char nome[100];
+    int total = 0;
+    printf("#################### BUSCAR PACIENTES #######################\n");
+    printf("NOME DO PACIENTE: ");
+    scanf("%[^\n]%*c", nome);
+    for(int i=0; i<nPacientes; i++){
+        tPaciente* p = pacientes[i];
+        if(PacComparaNome(p, nome) == 1){
+            total = 1;
+        }
+    }
+
+    if(total == 0){
+        printf("NENHUM PACIENTE FOI ENCONTRADO. PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL\n");
+        char c;
+        scanf("%c%*c", &c);
+
+    }
+    else{
+        (*nListaBusca)++;
+        (*listasbusca) = realloc((*listasbusca), *nListaBusca*sizeof(tListaBusca*));
+        (*listasbusca)[*nListaBusca - 1] = CriaListaBusca();
+        for(int i=0; i<nPacientes; i++){
+            tPaciente* p = pacientes[i];
+            if(PacComparaNome(p, nome)){
+                AdicionaPacienteListaBusca((*listasbusca)[*nListaBusca - 1], p);
+            }
+        }
+
+        printf("PACIENTES ENCONTRADOS:\n");
+        imprimeNaTelaListaBusca((*listasbusca)[*nListaBusca - 1]);
+
+        printf("#################### BUSCAR PACIENTES #######################\n");
+        printf("ESCOLHA UMA OPCAO:\n");
+        printf("\t(1) ENVIAR LISTA PARA IMPRESSAO\n");
+        printf("\t(2) RETORNAR AO MENU PRINCIPAL\n");
+        printf("###############################################################\n\n");
+        int num = 0;
+        scanf("%d%*c", &num);
+        if(num == 1){
+            insereDocumentoFila(filaImpressao, (*listasbusca)[*nListaBusca - 1], imprimeNaTelaListaBusca, imprimeEmArquivoListaBusca, DesalocaListaBusca);
+            printf("LISTA ENVIADA PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU PRINCIPAL\n");
+            char c;
+            scanf("%c%*c", &c);
+        }
+    }
+    printf("###############################################################\n");
+}

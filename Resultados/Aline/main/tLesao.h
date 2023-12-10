@@ -17,6 +17,6 @@ int ObtemCirurgiaLesao(tLesao* lesao);
 int ObtemCrioterapiaLesao(tLesao* lesao);
 
 void LesaoSalvaBinario(tLesao** lesao, int qtd, FILE* arq);
-tLesao** LesaoRecuperaBinario(tLesao** lesao, FILE* arq, int qtd);
+void LesaoRecuperaBinario(tLesao*** lesao, FILE* arq, int qtd);
 
 #endif

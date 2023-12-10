@@ -25,6 +25,8 @@ int SecComparaUser(tSecretario* sec, char* user);
 int SecComparaSenha(tSecretario* sec, char* senha);
 
 void SecretarioSalvaBinario(tSecretario** sec, int qtd, char* path);
-tSecretario** SecretarioRecuperaBinario(tSecretario** sec, FILE* arq, int* qtd);
+void SecretarioRecuperaBinario(tSecretario*** sec, FILE* arq, int* qtd);
+
+void CadastraSecretario(int* nSecretarios, tSecretario*** secretarios);
 
 #endif

@@ -85,16 +85,57 @@ void SecretarioSalvaBinario(tSecretario** sec, int qtd, char* path){
     fclose(arq);
 }
 
-tSecretario** SecretarioRecuperaBinario(tSecretario** sec, FILE* arq, int* qtd){
+void SecretarioRecuperaBinario(tSecretario*** sec, FILE* arq, int* qtd){
     fread(qtd, sizeof(int), 1, arq);
-    sec = realloc(sec, (*qtd)*sizeof(tSecretario*));
+    *sec = realloc(*sec, (*qtd)*sizeof(tSecretario*));
     
     for(int i=0; i<(*qtd); i++){
         tSecretario* secretario = malloc(sizeof(tSecretario));
         fread(secretario, sizeof(tSecretario), 1, arq);
-        sec[i] = secretario;
+        (*sec)[i] = secretario;
     }
 
     fclose(arq);
-    return sec;
+}
+
+void CadastraSecretario(int* nSecretarios, tSecretario*** secretarios){
+    char nome[100], cpf[15], nasc[11], tel[15], genero[10], user[20], senha[20], tipo[6];
+    int ehigual = 0;
+
+    printf("#################### CADASTRO SECRETARIO #######################\n");
+    printf("NOME COMPLETO: ");
+    scanf("%[^\n]%*c", nome);
+    printf("CPF: ");
+    scanf("%[^\n]%*c", cpf);
+    printf("DATA DE NASCIMENTO: ");
+    scanf("%[^\n]%*c", nasc);
+    printf("TELEFONE: ");
+    scanf("%[^\n]%*c", tel);
+    printf("GENERO: ");
+    scanf("%[^\n]%*c", genero);
+    printf("NOME DE USUARIO: ");
+    scanf("%[^\n]%*c", user);
+    printf("SENHA: ");
+    scanf("%[^\n]%*c", senha);
+    printf("NIVEL DE ACESSO: ");
+    scanf("%[^\n]%*c", tipo);
+
+    for(int i=0; i<*nSecretarios; i++){
+        if(SecComparaCPF((*secretarios)[i], cpf)){
+            ehigual = 1;
+            printf("CPF JA EXISTENTE. OPERACAO NAO PERMITIDA\n");
+            break;
+        }
+    }
+
+    if(ehigual == 0){
+        (*nSecretarios)++;
+        *secretarios = realloc(*secretarios, (*nSecretarios)*sizeof(tSecretario*));
+        (*secretarios)[(*nSecretarios)-1] = CriaSecretario(nome, cpf, nasc, tel, genero, user, senha, tipo);
+        printf("\nCADASTRO REALIZADO COM SUCESSO. ");
+        printf("PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL\n");
+        char c;
+        scanf("%c%*c", &c);
+        printf("###############################################################\n");
+    }
 }

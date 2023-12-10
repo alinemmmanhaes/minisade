@@ -63,12 +63,11 @@ void LesaoSalvaBinario(tLesao** lesao, int qtd, FILE* arq){
     }
 }
 
-tLesao** LesaoRecuperaBinario(tLesao** lesao, FILE* arq, int qtd){
-    lesao = realloc(lesao, qtd*sizeof(tLesao*));
+void LesaoRecuperaBinario(tLesao*** lesao, FILE* arq, int qtd){
+    *lesao = realloc(*lesao, qtd*sizeof(tLesao*));
     for(int i=0; i<qtd; i++){
         tLesao* l = malloc(sizeof(tLesao));
         fread(l, sizeof(tLesao), 1, arq);
-        lesao[i] = l;
+        (*lesao)[i] = l;
     }
-    return lesao;
 }
