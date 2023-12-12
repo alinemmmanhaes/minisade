@@ -172,7 +172,7 @@ void CriaArquivosTexto(char* path){
     sprintf(direnc, "%s/encaminhamento.txt", path);
     sprintf(dirbiop, "%s/biopsia.txt", path);
     sprintf(dirlista, "%s/lista_busca.txt", path);
-    sprintf(direlatorio, "%s/relatorio.txt", path);
+    sprintf(direlatorio, "%s/relatorio_geral.txt", path);
 
     FILE* pReceita = NULL, *pEnc = NULL, *pBiop = NULL, *pLista = NULL, *pRelatorio = NULL;
     pReceita = fopen(direceita, "a");
