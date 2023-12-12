@@ -17,8 +17,9 @@
 
 int main(int argc, char * argv[]){
     char path[200], caminho[200], bancodedados[400];
-    sprintf(path, "%s/saida", argv[1]);
+    sprintf(path, "%s/saida", argv[1]); //concatena caminho passado por parametro com "/saida"
 
+    //criando todos os ponteiros necessarios para funcionamento do sistema
     tMedico** medicos = NULL;
     tPaciente** pacientes = NULL;
     tSecretario** secretarios = NULL;
@@ -39,7 +40,7 @@ int main(int argc, char * argv[]){
     printf("DIGITE O CAMINHO DO BANCO DE DADOS: ");
     scanf("%[^\n]%*c", caminho);
     printf("################################################\n");
-    sprintf(bancodedados, "%s/%s", argv[1], caminho);
+    sprintf(bancodedados, "%s/%s", argv[1], caminho); //concatena caminho passado por parametro com o caminho do banco de dados lido
     printf("Caminho do banco de dados: %s\n", bancodedados);
     printf("Caminho da pasta de saida: %s\n", path);
 
@@ -49,7 +50,7 @@ int main(int argc, char * argv[]){
 
     while(1){
         ImprimeMenuPrincipal(tipo);
-        scanf("%d%*c", &op);
+        scanf("%d%*c", &op); //le a opcao que o usuario quer e a executa com base no tipo do usuario (med, admin ou user)
         if(op == 1 && tipo == 1){
             CadastraSecretario(&nSecretarios, &secretarios);
         }
