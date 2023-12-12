@@ -16,7 +16,7 @@
 #include "tFuncoes.h"
 
 int main(int argc, char * argv[]){
-    char path[100], caminho[100], bancodedados[200];
+    char path[200], caminho[200], bancodedados[400];
     sprintf(path, "%s/saida", argv[1]);
 
     tMedico** medicos = NULL;
@@ -28,6 +28,8 @@ int main(int argc, char * argv[]){
     tFila* filaImpressao = criaFila();
     int nMedicos = 0, nPacientes = 0, nSecretarios = 0, nConsultas = 0, nListaBusca = 0, nRelatorios = 0, op=0, tipo = -1, idLogin = -1;
     
+    CriaArquivosTexto(path);
+
     if(argc <= 1){
         printf("ERRO: O diretorio de arquivos de configuracao nao foi informado\n");
         return 1;
@@ -36,8 +38,10 @@ int main(int argc, char * argv[]){
     printf("################################################\n");
     printf("DIGITE O CAMINHO DO BANCO DE DADOS: ");
     scanf("%[^\n]%*c", caminho);
-    printf("\n################################################\n");
+    printf("################################################\n");
     sprintf(bancodedados, "%s/%s", argv[1], caminho);
+    printf("Caminho do banco de dados: %s\n", bancodedados);
+    printf("Caminho da pasta de saida: %s\n", path);
 
     RecuperaBinario(&pacientes, &medicos, &secretarios, &consultas, &nConsultas, &nMedicos, &nPacientes, &nSecretarios, bancodedados);
 

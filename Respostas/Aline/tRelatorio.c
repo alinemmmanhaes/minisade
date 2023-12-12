@@ -133,7 +133,7 @@ void GeraRelatorio(int nPacientes, int nConsultas, tPaciente** pacientes, tConsu
     printf("ESCOLHA UMA OPCAO:\n");
     printf("\t(1) ENVIAR PARA IMPRESSAO\n");
     printf("\t(2) RETORNAR AO MENU PRINCIPAL\n");
-    printf("###############################################################\n\n");
+    printf("############################################################\n\n");
     int num = 0;
     scanf("%d%*c", &num);
     if(num == 1){
@@ -141,6 +141,6 @@ void GeraRelatorio(int nPacientes, int nConsultas, tPaciente** pacientes, tConsu
         printf("RELATÓRIO ENVIADO PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR\n");
         char c;
         scanf("%c%*c", &c);
-        printf("###############################################################\n");
+        printf("############################################################\n");
     }
 }

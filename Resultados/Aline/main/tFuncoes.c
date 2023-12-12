@@ -73,7 +73,7 @@ void OperaFila(tFila* filaImpressao, char* path){
         printf("ESCOLHA UMA OPCAO:\n");
         printf("\t(1) EXECUTAR FILA DE IMPRESSAO\n");
         printf("\t(2) RETORNAR AO MENU PRINCIPAL\n");
-        printf("###############################################################\n");
+        printf("############################################################\n");
         int num = 0;
         scanf("%d%*c", &num);
         if(num == 1){
@@ -87,7 +87,7 @@ void OperaFila(tFila* filaImpressao, char* path){
         printf("\nPRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU ANTERIOR\n");
         char c;
         scanf("%c%*c", &c);
-        printf("###############################################################\n");
+        printf("############################################################\n");
     }
 }
 
@@ -111,8 +111,8 @@ void RecuperaBinario(tPaciente*** pacientes, tMedico*** medicos, tSecretario*** 
         MedicoRecuperaBinario(medicos, fMed, nMedicos);
         PacienteRecuperaBinario(pacientes, fPac, nPacientes);
         SecretarioRecuperaBinario(secretarios, fSec, nSecretarios);
+        ConsultaRecuperaBinario(consultas, bancodedados, nConsultas);
     }
-    ConsultaRecuperaBinario(consultas, bancodedados, nConsultas);
 }
 
 void FazLogin(int nMedicos, int* nSecretarios, tMedico** medicos, tSecretario*** secretarios, int* idLogin, int* tipo){
@@ -163,4 +163,32 @@ void FazLogin(int nMedicos, int* nSecretarios, tMedico** medicos, tSecretario***
             *secretarios[(*nSecretarios)-1] = CriaSecretario(nome, cpf, nasc, tel, genero, user, senha, tipo);
         }
     }
+}
+
+void CriaArquivosTexto(char* path){
+    char direceita[1000], direnc[1000], dirbiop[1000], dirlista[1000], direlatorio[1000];
+
+    sprintf(direceita, "%s/receita.txt", path);
+    sprintf(direnc, "%s/encaminhamento.txt", path);
+    sprintf(dirbiop, "%s/biopsia.txt", path);
+    sprintf(dirlista, "%s/lista_busca.txt", path);
+    sprintf(direlatorio, "%s/relatorio.txt", path);
+
+    FILE* pReceita = NULL, *pEnc = NULL, *pBiop = NULL, *pLista = NULL, *pRelatorio = NULL;
+    pReceita = fopen(direceita, "a");
+    pEnc = fopen(direnc, "a");
+    pBiop = fopen(dirbiop, "a");
+    pLista = fopen(dirlista, "a");
+    pRelatorio = fopen(direlatorio, "a");
+
+    if(pReceita == NULL || pEnc == NULL || pBiop == NULL || pLista == NULL || pRelatorio == NULL){
+        printf("ERRO: Algum(ns) dos arquivos não foi/foram gerado(s)\n");
+        exit(1);
+    }
+
+    fclose(pReceita);
+    fclose(pEnc);
+    fclose(pBiop);
+    fclose(pLista);
+    fclose(pRelatorio);
 }

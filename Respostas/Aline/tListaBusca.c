@@ -94,7 +94,7 @@ void RealizaBusca(int nPacientes, tPaciente** pacientes, int* nListaBusca, tList
         printf("ESCOLHA UMA OPCAO:\n");
         printf("\t(1) ENVIAR LISTA PARA IMPRESSAO\n");
         printf("\t(2) RETORNAR AO MENU PRINCIPAL\n");
-        printf("###############################################################\n\n");
+        printf("############################################################\n\n");
         int num = 0;
         scanf("%d%*c", &num);
         if(num == 1){
@@ -104,5 +104,5 @@ void RealizaBusca(int nPacientes, tPaciente** pacientes, int* nListaBusca, tList
             scanf("%c%*c", &c);
         }
     }
-    printf("###############################################################\n");
+    printf("############################################################\n");
 }

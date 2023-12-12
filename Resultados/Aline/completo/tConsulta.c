@@ -239,7 +239,8 @@ void ConsultaRecuperaBinario(tConsulta*** cons, char* path, int* qtd){
     sprintf(diretorio, "%s/consultas.bin", path);
     FILE* arq = fopen(diretorio, "rb");
     if(arq == NULL){
-        return NULL;
+        printf("ERRO na leitura binária de consulta\n");
+        return;
     }
     sprintf(dirlesao, "%s/lesoes.bin", path);
     FILE* arqLesao = fopen(dirlesao, "rb");
@@ -276,7 +277,7 @@ void RealizaConsultas(int nPacientes, tPaciente** pacientes, int* nConsultas, tC
         printf("PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL\n");
         char c;
         scanf("%c%*c", &c);
-        printf("###############################################################\n");
+        printf("############################################################\n");
     }
     else{
         printf("---\n");
@@ -294,9 +295,8 @@ void RealizaConsultas(int nPacientes, tPaciente** pacientes, int* nConsultas, tC
         }
 
         LeConsulta((*consultas)[*nConsultas - 1]);
-        printf("###############################################################\n");
+        printf("############################################################\n");
         PacIncrementaConsultas(pacientes[resp]);
         MenuDaConsulta((*consultas)[*nConsultas - 1], filaImpressao);
     }
-    //return consultas;
 }

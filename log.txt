@@ -252,7 +252,7 @@ EXECUTANDO O VALGRIND EM CADA CASO:
  - Resultado para o saida.txt: Incorreto!
  - Pasta completo / Caso 1:
  - Arquivo de output gerado: Resultados/Aline/completo/Casos/1/result_valgrind.txt.
- - Valgrind: Ok! allocs: 57, frees: 57, errors: 0 | Desconto do valgrind: 0.0%
+ - Valgrind: Ok! allocs: 61, frees: 61, errors: 0 | Desconto do valgrind: 0.0%
  - Resultado para o biopsia.txt: Ok! Peso: 1.0
  - Resultado para o encaminhamento.txt: Ok! Peso: 1.0
  - Resultado para o lista_busca.txt: Ok! Peso: 3.0
@@ -261,7 +261,7 @@ EXECUTANDO O VALGRIND EM CADA CASO:
  - Resultado para o saida.txt: Incorreto!
  - Pasta completo / Caso 2:
  - Arquivo de output gerado: Resultados/Aline/completo/Casos/2/result_valgrind.txt.
- - Valgrind: Ok! allocs: 81, frees: 81, errors: 0 | Desconto do valgrind: 0.0%
+ - Valgrind: Ok! allocs: 86, frees: 86, errors: 0 | Desconto do valgrind: 0.0%
  - Resultado para o biopsia.txt: Ok! Peso: 1.0
  - Resultado para o encaminhamento.txt: Ok! Peso: 1.0
  - Resultado para o lista_busca.txt: Ok! Peso: 3.0
@@ -270,7 +270,7 @@ EXECUTANDO O VALGRIND EM CADA CASO:
  - Resultado para o saida.txt: Incorreto!
  - Pasta completo / Caso 3:
  - Arquivo de output gerado: Resultados/Aline/completo/Casos/3/result_valgrind.txt.
- - Valgrind: Ok! allocs: 90, frees: 90, errors: 0 | Desconto do valgrind: 0.0%
+ - Valgrind: Ok! allocs: 95, frees: 95, errors: 0 | Desconto do valgrind: 0.0%
  - Resultado para o biopsia.txt: Ok! Peso: 1.0
  - Resultado para o encaminhamento.txt: Ok! Peso: 1.0
  - Resultado para o lista_busca.txt: Ok! Peso: 3.0
@@ -279,7 +279,7 @@ EXECUTANDO O VALGRIND EM CADA CASO:
  - Resultado para o saida.txt: Incorreto!
  - Pasta completo / Caso 4:
  - Arquivo de output gerado: Resultados/Aline/completo/Casos/4/result_valgrind.txt.
- - Valgrind: Ok! allocs: 98, frees: 98, errors: 0 | Desconto do valgrind: 0.0%
+ - Valgrind: Ok! allocs: 103, frees: 103, errors: 0 | Desconto do valgrind: 0.0%
  - Resultado para o biopsia.txt: Ok! Peso: 1.0
  - Resultado para o encaminhamento.txt: Ok! Peso: 1.0
  - Resultado para o lista_busca.txt: Ok! Peso: 3.0
@@ -288,7 +288,7 @@ EXECUTANDO O VALGRIND EM CADA CASO:
  - Resultado para o saida.txt: Incorreto!
  - Pasta completo / Caso 5:
  - Arquivo de output gerado: Resultados/Aline/completo/Casos/5/result_valgrind.txt.
- - Valgrind: Ok! allocs: 86, frees: 86, errors: 0 | Desconto do valgrind: 0.0%
+ - Valgrind: Ok! allocs: 91, frees: 91, errors: 0 | Desconto do valgrind: 0.0%
  - Resultado para o biopsia.txt: Ok! Peso: 1.0
  - Resultado para o encaminhamento.txt: Ok! Peso: 1.0
  - Resultado para o lista_busca.txt: Ok! Peso: 3.0
@@ -297,7 +297,7 @@ EXECUTANDO O VALGRIND EM CADA CASO:
  - Resultado para o saida.txt: Incorreto!
  - Pasta completo / Caso 6:
  - Arquivo de output gerado: Resultados/Aline/completo/Casos/6/result_valgrind.txt.
- - Valgrind: Ok! allocs: 101, frees: 101, errors: 0 | Desconto do valgrind: 0.0%
+ - Valgrind: Ok! allocs: 106, frees: 106, errors: 0 | Desconto do valgrind: 0.0%
  - Resultado para o biopsia.txt: Ok! Peso: 1.0
  - Resultado para o encaminhamento.txt: Ok! Peso: 1.0
  - Resultado para o lista_busca.txt: Ok! Peso: 3.0
@@ -306,7 +306,7 @@ EXECUTANDO O VALGRIND EM CADA CASO:
  - Resultado para o saida.txt: Incorreto!
  - Pasta main / Caso 1:
  - Arquivo de output gerado: Resultados/Aline/main/Casos/1/result_valgrind.txt.
- - Valgrind: Ok! allocs: 58, frees: 58, errors: 0 | Desconto do valgrind: 0.0%
+ - Valgrind: Ok! allocs: 62, frees: 62, errors: 0 | Desconto do valgrind: 0.0%
  - Resultado para o biopsia.txt: Ok! Peso: 1.0
  - Resultado para o encaminhamento.txt: Ok! Peso: 1.0
  - Resultado para o lista_busca.txt: Ok! Peso: 3.0
@@ -315,7 +315,7 @@ EXECUTANDO O VALGRIND EM CADA CASO:
  - Resultado para o saida.txt: Incorreto!
  - Pasta main / Caso 2:
  - Arquivo de output gerado: Resultados/Aline/main/Casos/2/result_valgrind.txt.
- - Valgrind: Ok! allocs: 82, frees: 82, errors: 0 | Desconto do valgrind: 0.0%
+ - Valgrind: Ok! allocs: 87, frees: 87, errors: 0 | Desconto do valgrind: 0.0%
  - Resultado para o biopsia.txt: Ok! Peso: 1.0
  - Resultado para o encaminhamento.txt: Ok! Peso: 1.0
  - Resultado para o lista_busca.txt: Ok! Peso: 3.0
@@ -324,7 +324,7 @@ EXECUTANDO O VALGRIND EM CADA CASO:
  - Resultado para o saida.txt: Incorreto!
  - Pasta main / Caso 3:
  - Arquivo de output gerado: Resultados/Aline/main/Casos/3/result_valgrind.txt.
- - Valgrind: Ok! allocs: 92, frees: 92, errors: 0 | Desconto do valgrind: 0.0%
+ - Valgrind: Ok! allocs: 97, frees: 97, errors: 0 | Desconto do valgrind: 0.0%
  - Resultado para o biopsia.txt: Ok! Peso: 1.0
  - Resultado para o encaminhamento.txt: Ok! Peso: 1.0
  - Resultado para o lista_busca.txt: Ok! Peso: 3.0
@@ -333,7 +333,7 @@ EXECUTANDO O VALGRIND EM CADA CASO:
  - Resultado para o saida.txt: Incorreto!
  - Pasta main / Caso 4:
  - Arquivo de output gerado: Resultados/Aline/main/Casos/4/result_valgrind.txt.
- - Valgrind: Ok! allocs: 100, frees: 100, errors: 0 | Desconto do valgrind: 0.0%
+ - Valgrind: Ok! allocs: 105, frees: 105, errors: 0 | Desconto do valgrind: 0.0%
  - Resultado para o biopsia.txt: Ok! Peso: 1.0
  - Resultado para o encaminhamento.txt: Ok! Peso: 1.0
  - Resultado para o lista_busca.txt: Ok! Peso: 3.0
@@ -342,7 +342,7 @@ EXECUTANDO O VALGRIND EM CADA CASO:
  - Resultado para o saida.txt: Incorreto!
  - Pasta main / Caso 5:
  - Arquivo de output gerado: Resultados/Aline/main/Casos/5/result_valgrind.txt.
- - Valgrind: Ok! allocs: 87, frees: 87, errors: 0 | Desconto do valgrind: 0.0%
+ - Valgrind: Ok! allocs: 92, frees: 92, errors: 0 | Desconto do valgrind: 0.0%
  - Resultado para o biopsia.txt: Ok! Peso: 1.0
  - Resultado para o encaminhamento.txt: Ok! Peso: 1.0
  - Resultado para o lista_busca.txt: Ok! Peso: 3.0
@@ -351,7 +351,7 @@ EXECUTANDO O VALGRIND EM CADA CASO:
  - Resultado para o saida.txt: Incorreto!
  - Pasta main / Caso 6:
  - Arquivo de output gerado: Resultados/Aline/main/Casos/6/result_valgrind.txt.
- - Valgrind: Ok! allocs: 102, frees: 102, errors: 0 | Desconto do valgrind: 0.0%
+ - Valgrind: Ok! allocs: 107, frees: 107, errors: 0 | Desconto do valgrind: 0.0%
  - Resultado para o biopsia.txt: Ok! Peso: 1.0
  - Resultado para o encaminhamento.txt: Ok! Peso: 1.0
  - Resultado para o lista_busca.txt: Ok! Peso: 3.0

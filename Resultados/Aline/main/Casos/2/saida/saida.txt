@@ -1,6 +1,7 @@
 ################################################
-DIGITE O CAMINHO DO BANCO DE DADOS: 
-################################################
+DIGITE O CAMINHO DO BANCO DE DADOS: ################################################
+Caminho do banco de dados: Resultados/Aline/main/Casos/2/../../
+Caminho da pasta de saida: Resultados/Aline/main/Casos/2/saida
 ######################## ACESSO MINI-SADE ######################
 DIGITE SEU LOGIN: DIGITE SUA SENHA: ###############################################################
 ####################### MENU PRINCIPAL #########################
@@ -128,10 +129,10 @@ NOME DO PACIENTE: PACIENTES ENCONTRADOS:
 ESCOLHA UMA OPCAO:
 	(1) ENVIAR LISTA PARA IMPRESSAO
 	(2) RETORNAR AO MENU PRINCIPAL
-###############################################################
+############################################################
 
 LISTA ENVIADA PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU PRINCIPAL
-###############################################################
+############################################################
 ####################### MENU PRINCIPAL #########################
 ESCOLHA UMA OPCAO:
 	(1) CADASTRAR SECRETARIO
@@ -149,7 +150,7 @@ CPF DO PACIENTE: ---
 -DATA DE NASCIMENTO: 2/4/1985
 ---
 DATA DA CONSULTA: POSSUI DIABETES: FUMANTE: ALERGIA A MEDICAMENTO: HISTORICO DE CANCER: TIPO DE PELE: 
-###############################################################
+############################################################
 #################### CONSULTA MEDICA #######################
 ESCOLHA UMA OPCAO:
 	(1) CADASTRAR LESAO
@@ -234,10 +235,10 @@ NUMERO TOTAL DE CRIOTERAPIA: 0
 ESCOLHA UMA OPCAO:
 	(1) ENVIAR PARA IMPRESSAO
 	(2) RETORNAR AO MENU PRINCIPAL
-###############################################################
+############################################################
 
 RELATÓRIO ENVIADO PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR
-###############################################################
+############################################################
 ####################### MENU PRINCIPAL #########################
 ESCOLHA UMA OPCAO:
 	(1) CADASTRAR SECRETARIO
@@ -253,7 +254,7 @@ ESCOLHA UMA OPCAO:
 ESCOLHA UMA OPCAO:
 	(1) EXECUTAR FILA DE IMPRESSAO
 	(2) RETORNAR AO MENU PRINCIPAL
-###############################################################
+############################################################
 ################ FILA DE IMPRESSAO MEDICA ##################
 EXECUTANDO FILA DE IMPRESSAO:
 1 - TRYNDAMERE (200.171.256-10)
@@ -303,12 +304,12 @@ NUMERO TOTAL DE CRIOTERAPIA: 0
 
 
 PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU ANTERIOR
-###############################################################
+############################################################
 ################ FILA DE IMPRESSAO MEDICA ##################
 ESCOLHA UMA OPCAO:
 	(1) EXECUTAR FILA DE IMPRESSAO
 	(2) RETORNAR AO MENU PRINCIPAL
-###############################################################
+############################################################
 ####################### MENU PRINCIPAL #########################
 ESCOLHA UMA OPCAO:
 	(1) CADASTRAR SECRETARIO
